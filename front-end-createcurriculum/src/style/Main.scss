@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@import "./Variaveis.scss";
+
+html{
+  background-color: #000;
+}
+
+main{
+  @media(min-height: 800px){
+    height: 100vh;
+  }
+}
+
+.buttonMain {
+  background-color: $button-background-main;
+  width: calc($button-width-base * 10);
+  height: calc($button-height-base * 3);
+  padding: 10px;
+  border-radius: 20px;
+  color: $button-color-main;
+
+  &:disabled{
+    background-color: $button-background-main-disabled;
+  }
+}
+
+.buttonSecundary{
+  background-color: $button-background-main;
+  width: calc($button-width-base * 10);
+  height: calc($button-height-base * 2);
+  padding: 5px;
+  border-radius: 20px;
+  color: $button-color-main;
+}
+
+.miniButton{
+  background-color: $button-background-main;
+  width: calc($button-width-base * 5);
+  height: calc($button-height-base * 1);
+  padding: 5px;
+  border-radius: 20px;
+  color: $button-color-main;
+  font-size: x-small;
+}
+
+.container-main{
+    padding: 20px;
+    background-color: $container-background-main;
+    border-radius: 20px;
+}
+
+.titulo-campos{
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.svg-padrao{
+  color: $color-highlighted;
+}
+
+.svg-button{
+  &:hover{
+    color: $color-highlighted;
+  }
+}
+
+.containerViewText{
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  overflow-y: auto;
+  overflow-x: hidden;
+  word-break: break-all;
+}
+
+ol, ul{
+  margin: 0;
+  width: 100%;
+  padding-left: 40px;
+}
