@@ -1,5 +1,3 @@
-"use client"
-
 import { FormEvent, useEffect, useRef, useState } from "react";
 import Dados from "@/components/GerarCurriculo/Dados"
 import Escolhas from "@/components/GerarCurriculo/Escolhas"

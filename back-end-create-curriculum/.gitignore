@@ -1,3 +1,9 @@
+# vscode
+.vscode/
+
+# node
+node_modules/
+
+# pastas únicas
 log/
 temp/
-node_modules/
