@@ -1,0 +1,31 @@
+{
+  "name": "back-end-create-curriculum",
+  "version": "1.0.0",
+  "description": "Back-end with function work with front-end in create curriculum",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "audit": "auditjs ossi"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martex84/CreateCurriculum.git"
+  },
+  "author": "martex84",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/martex84/CreateCurriculum/issues"
+  },
+  "homepage": "https://github.com/martex84/CreateCurriculum#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.3"
+  },
+  "dependencies": {
+    "auditjs": "^4.0.45",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "puppeteer": "^22.10.0"
+  }
+}

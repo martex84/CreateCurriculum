@@ -1,0 +1,71 @@
+@import "./Variaveis.scss";
+
+.ctn-main-gerar-arquivo{
+    margin: 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    height: 800px;
+    width: 100%;
+
+    @media (max-width: 650px){
+        flex-direction: column;
+    }
+
+    @media (max-height: 800px){
+        height: 750px;
+    }
+}
+
+.container-previsualizacao{
+    width: 200px;
+    height: 250px;
+    background-color: $container-previsualizacao;
+}
+
+#selectTipoCurriculo{
+    border: 1px solid $borda-background-black;
+    background-color: #fff;
+    width: 90%;
+    option{
+        text-align: center;
+    }
+}
+
+.container-button-carregamento-imagem{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-pre-visualizacao-imagem{
+    width: 100px;
+    height: 100px;
+    background-color: $container-previsualizacao;
+}
+
+.container-mensagem-carregamento-imagem{
+    width: 90%;
+    height: 4em;
+    background-color: $container-previsualizacao;
+    border-radius: 5px;
+}
+
+.container-busca-imagem{
+    height: 200px;
+}
+
+.container-dados{
+    width: 700px;
+    min-width: 700px;
+    max-width: 700px;
+    height: 610px;
+    max-height: 100%;
+}
+
+.embedPdfFile{
+    width: 100%;
+    height: 800px;
+}

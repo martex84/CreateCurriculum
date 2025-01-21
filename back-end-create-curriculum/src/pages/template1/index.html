@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <link />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template 1</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script
+      src="https://kit.fontawesome.com/45257b53b1.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- {style} -->
+  </head>
+  <body>
+    <div class="containerPrincipal">
+      <div class="displayFlex">
+        <div class="columLeft displayFlex itemCenter">
+          <div class="containerFoto displayFlex itemCenter justifyCenter">
+            <img src="{foto}" alt="Imagem Pessoa" />
+          </div>
+        </div>
+        <div class="containerNome displayFlex itemCenter">
+          <h1>{nome}</h1>
+        </div>
+      </div>
+      <div class="bordarTop displayFlex heightTotal">
+        <div class="displayFlex flexColumn bordarRight heightTotal columLeft">
+          <div class="containerContato">
+            <div class="paddingTopLeft">
+              <p>
+                <span><i class="fa-solid fa-phone"></i></span> {numero}
+              </p>
+              <p>
+                <span><i class="fa-solid fa-paper-plane"></i></span> {email}
+              </p>
+              <p>
+                <span><i class="fa-brands fa-linkedin"></i></span> {linkdin}
+              </p>
+            </div>
+          </div>
+          <div class="bordarTop containerFormacaoAcademica">
+            <div class="paddingTopLeft">
+              <h2>Formação Acadêmica</h2>
+              <div>{formacaoAcademica}</div>
+            </div>
+          </div>
+          <div class="bordarTop containerResumoProfissional">
+            <div class="paddingTopLeft">
+              <h2>Resumo Profissional</h2>
+              <div>{resumoProfissional}</div>
+            </div>
+          </div>
+          <div class="bordarTop containerIdioma">
+            <div class="paddingTopLeft">
+              <h2>Idiomas</h2>
+              <div>{idiomas}</div>
+            </div>
+          </div>
+          <div class="bordarTop">
+            <div class="paddingTopLeft">
+              <h2>Competências</h2>
+              <div class="paddingLeft">{compotencias}</div>
+            </div>
+          </div>
+        </div>
+        <div class="displayFlex flexColumn heightTotal widthTotal">
+          <div class="marginSmall">
+            <div class="paddingTopLeft">
+              <h2>Histórico Profissional</h2>
+              <div>{historicoProfissinal}</div>
+            </div>
+          </div>
+          <div class="bordarTop containerCertificacoes">
+            <div class="paddingTopLeft">
+              <h2>Certificações</h2>
+              <div>{certificacoes}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
