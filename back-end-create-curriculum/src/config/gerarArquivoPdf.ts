@@ -1,10 +1,11 @@
 import puppeteer from "puppeteer";
-import log from "./log.js";
-import fs from "fs";
-import path from "path";
+import log from "./log";
+import fs from "node:fs";
+import path from "node:path";
+import { RespostaGeracao, TemplatePadrao } from "@curriculum/types/geracaoPdf";
 
-async function gerarArquivoPdf(objetoMock) {
-  let valorRetorno = {
+async function gerarArquivoPdf(objetoMock: TemplatePadrao) {
+  let valorRetorno: RespostaGeracao = {
     error: {
       isError: false,
       messageError: "",
@@ -20,32 +21,31 @@ async function gerarArquivoPdf(objetoMock) {
 
   log("Captado HTML!");
   let arquivoHtml = fs
-    .readFileSync("src/pages/template1/index.html")
+    .readFileSync("src/features/templates/padrao/index.html")
     .toString();
 
   log("Passando valor variáveis");
-  Object.keys(objetoMock).forEach(key => {
-    if(key === "contato"){
-      Object.keys(objetoMock.contato).forEach(keyContato => {
-        arquivoHtml = arquivoHtml.replaceAll(`{${keyContato}}`, objetoMock.contato[keyContato]);
-      })
+  (Object.keys(objetoMock) as (keyof TemplatePadrao)[]).forEach((key) => {
+    if (key === "contato") {
+      Object.entries(objetoMock.contato).forEach((key, valor) => {
+        arquivoHtml = arquivoHtml.replaceAll(`{${key}}`, valor.toString());
+      });
+    } else {
+      arquivoHtml = arquivoHtml.replaceAll(`{${key}}`, objetoMock[key]);
     }
-    else{
-      arquivoHtml = arquivoHtml.replaceAll(`{${key}}`, objetoMock[key])
-    }
-  })
+  });
 
   log("Captando CSS");
 
   const arquivoCSS = fs
-    .readFileSync("src/pages/template1/style.css")
+    .readFileSync("src/features/templates/padrao/style.css")
     .toString();
 
   log("Incluindo CSS no HTML");
 
   arquivoHtml = arquivoHtml.replaceAll(
     "<!-- {style} -->",
-    `<style>${arquivoCSS}</style>`
+    `<style>${arquivoCSS}</style>`,
   );
 
   log("Gerando pagina");
