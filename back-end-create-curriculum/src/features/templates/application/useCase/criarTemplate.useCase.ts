@@ -17,8 +17,10 @@ export class CriarTemplateUseCase {
           "Os dados do body não corresponde ao dados de um template!",
         );
 
-      // let template: Templates;
-      // let tipoTemplates: TiposTemplates;
+      const template: Templates = body.template;
+      const tipoTemplates: TiposTemplates = body.tipo;
+
+      //TODO: Continuar o desenvolvimento da geração do template
     } catch (error) {
       console.error(`Falha na geração do template [${error}]`);
     } finally {

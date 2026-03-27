@@ -1,24 +1,40 @@
-import { TemplatePadrao } from "@/features/templates/domain/templates.entity";
+import {
+  TemplatePadrao,
+  Templates,
+} from "@/features/templates/domain/templates.entity";
+import { TiposTemplates } from "@/features/templates/types/tiposTemplates";
 
 /**
  * Função responsável por validar se os dados passados são do tipo template
  * @param dados Recebe os dados que serão validados
  * @returns Retorna verdadeiro ou falos para os dados sejam do tipo template
  */
-export function validarTemplate(dados: any): boolean {
+export function validarTemplate(dados: any): dados is {
+  template: Templates;
+  tipo: TiposTemplates;
+} {
   try {
-    if (typeof dados !== "object" && Object.keys(dados).length === 0)
-      throw new Error("Falha na captação dos dados do body");
+    //Realiza a validação básica do objeto recebido
+    if (!dados || typeof dados !== "object" || Array.isArray(dados)) {
+      throw new Error("Os dados fornecidos devem ser um objeto válido.");
+    }
 
-    const dadosTemplate = dados.template;
+    const { tipo, template: dadosTemplate } = dados;
+
+    if (tipo !== "padrao") {
+      throw new Error("Tipo de template desconhecido ou não suportado.");
+    }
 
     if (
-      typeof dadosTemplate !== "object" &&
-      Object.keys(dadosTemplate).length === 0
+      !dadosTemplate ||
+      typeof dadosTemplate !== "object" ||
+      Array.isArray(dadosTemplate)
     )
-      throw new Error("Falha na captação dos dados do template");
+      throw new Error("O campo 'template' deve ser um objeto preenchido.");
 
+    //Inicia a validação para o template do tipo "padrão"
     if (dados.tipo === "padrao") {
+      //Cria uma template para utilizar na validação
       const template: TemplatePadrao = {
         contato: {
           numero: "",
@@ -39,6 +55,7 @@ export function validarTemplate(dados: any): boolean {
 
         const keyAtual = key as keyof TemplatePadrao;
 
+        //Inicia a validação para o campo contato
         if (key === "contato") {
           if (!keysTemplate.includes(key))
             throw new Error(
@@ -66,7 +83,9 @@ export function validarTemplate(dados: any): boolean {
                 `O tipo do campo '${key}' é diferente do esperado!`,
               );
           });
-        } else {
+        }
+        //Realiza a validação para os demais campos
+        else {
           if (!keysTemplate.includes(key))
             throw new Error(
               `O campo '${key}' não existe no template informado!`,
@@ -80,7 +99,9 @@ export function validarTemplate(dados: any): boolean {
             );
         }
       });
-    } else {
+    }
+    //Caso não seja encontrado o tipo do template irá retornar um erro
+    else {
       throw new Error("Falha ao tentar identificar o tipo de template");
     }
 
