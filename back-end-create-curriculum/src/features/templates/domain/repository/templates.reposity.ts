@@ -1,5 +1,5 @@
 import { TiposTemplates } from "@templates/types/tiposTemplates";
-import { Templates } from "@templates/domain/templates.entity";
+import { Templates } from "@/features/templates/domain/entity/templates.entity";
 
 export interface TemplatesReposity {
   /**

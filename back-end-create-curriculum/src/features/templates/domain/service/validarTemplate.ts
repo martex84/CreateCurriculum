@@ -1,7 +1,7 @@
 import {
   TemplatePadrao,
   Templates,
-} from "@/features/templates/domain/templates.entity";
+} from "@/features/templates/domain/entity/templates.entity";
 import { TiposTemplates } from "@/features/templates/types/tiposTemplates";
 
 /**

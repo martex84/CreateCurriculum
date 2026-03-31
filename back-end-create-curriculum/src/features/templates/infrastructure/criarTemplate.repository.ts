@@ -1,5 +1,5 @@
-import { Templates } from "@/features/templates/domain/templates.entity";
-import { TemplatesReposity } from "@/features/templates/domain/templates.reposity";
+import { Templates } from "@/features/templates/domain/entity/templates.entity";
+import { TemplatesReposity } from "@/features/templates/domain/repository/templates.reposity";
 import { TiposTemplates } from "@/features/templates/types/tiposTemplates";
 
 export class CriarTemplateRepository implements TemplatesReposity {
