@@ -1,7 +1,7 @@
 import { TiposTemplates } from "@templates/types/tiposTemplates";
-import { Templates } from "@/features/templates/domain/entity/templates.entity";
+import { Templates } from "@/subdomains/templates/domain/entity/templates.entity";
 
-export interface TemplatesReposity {
+export interface ITemplatesRepositoryPort {
   /**
    * Função responsável por gerar um HTML com base no template escolhido os dados informados
    * @param template Recebe o objeto com os dados do template

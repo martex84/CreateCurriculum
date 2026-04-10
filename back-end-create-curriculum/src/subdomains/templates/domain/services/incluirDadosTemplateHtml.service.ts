@@ -1,11 +1,11 @@
 import {
   Templates,
   TemplatePadrao,
-} from "@/features/templates/domain/entity/templates.entity";
-import { TiposTemplates } from "@/features/templates/types/tiposTemplates";
+} from "@/subdomains/templates/domain/entity/templates.entity";
+import { TiposTemplates } from "@/subdomains/templates/types/tiposTemplates";
 import { DadosTemplate } from "@templates/types/dadosTemplate";
 
-export function incluirDadosTemplateHtml(
+export function incluirDadosTemplateHtmlService(
   dadosUsuario: Templates,
   tipoTemplate: TiposTemplates,
   dadosTemplate: DadosTemplate,

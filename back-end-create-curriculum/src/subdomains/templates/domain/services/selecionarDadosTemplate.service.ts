@@ -1,8 +1,8 @@
 import fs from "node:fs";
-import { TiposTemplates } from "@/features/templates/types/tiposTemplates";
+import { TiposTemplates } from "@/subdomains/templates/types/tiposTemplates";
 import { DadosTemplate } from "@templates/types/dadosTemplate";
 
-export async function selecionarTemplateHTML(
+export async function selecionarTemplateHTMLService(
   tipoTemplate: TiposTemplates,
 ): Promise<DadosTemplate> {
   try {
@@ -15,11 +15,11 @@ export async function selecionarTemplateHTML(
 
     if (tipoTemplate === "padrao") {
       dadosTemplate.html = fs
-        .readFileSync("src/features/templates/padrao/index.html")
+        .readFileSync("src/subdomains/templates/padrao/index.html")
         .toString();
 
       dadosTemplate.css = fs
-        .readFileSync("src/features/templates/padrao/style.css")
+        .readFileSync("src/subdomains/templates/padrao/style.css")
         .toString();
     } else throw new Error("Falha ao tentar localizar o tipo de template");
 

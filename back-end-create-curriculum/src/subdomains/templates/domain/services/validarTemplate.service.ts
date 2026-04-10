@@ -1,15 +1,15 @@
 import {
   TemplatePadrao,
   Templates,
-} from "@/features/templates/domain/entity/templates.entity";
-import { TiposTemplates } from "@/features/templates/types/tiposTemplates";
+} from "@/subdomains/templates/domain/entity/templates.entity";
+import { TiposTemplates } from "@/subdomains/templates/types/tiposTemplates";
 
 /**
  * Função responsável por validar se os dados passados são do tipo template
  * @param dados Recebe os dados que serão validados
  * @returns Retorna verdadeiro ou falos para os dados sejam do tipo template
  */
-export function validarTemplate(dados: any): dados is {
+export function validarTemplateService(dados: any): dados is {
   template: Templates;
   tipo: TiposTemplates;
 } {

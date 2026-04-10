@@ -21,7 +21,7 @@ async function gerarArquivoPdf(objetoMock: TemplatePadrao) {
 
   log("Captado HTML!");
   let arquivoHtml = fs
-    .readFileSync("src/features/templates/padrao/index.html")
+    .readFileSync("src/subdomains/templates/padrao/index.html")
     .toString();
 
   log("Passando valor variáveis");
@@ -38,7 +38,7 @@ async function gerarArquivoPdf(objetoMock: TemplatePadrao) {
   log("Captando CSS");
 
   const arquivoCSS = fs
-    .readFileSync("src/features/templates/padrao/style.css")
+    .readFileSync("src/subdomains/templates/padrao/style.css")
     .toString();
 
   log("Incluindo CSS no HTML");
@@ -66,7 +66,9 @@ async function gerarArquivoPdf(objetoMock: TemplatePadrao) {
 
   log(`Local do arquivo: [${pathArquivo}]`);
 
-  const pdfBuffer = await page.pdf({
+  log("Gerando arquivo PDF");
+
+  await page.pdf({
     format: "A4",
     path: pathArquivo,
     printBackground: true,

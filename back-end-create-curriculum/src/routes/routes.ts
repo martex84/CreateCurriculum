@@ -1,15 +1,15 @@
 import { Router, Request, Response } from "express";
 // import { criarTemplate } from "@curriculum/controllers/criarTemplate_controller";
-import { CriacaoPdfService } from "@/application/services/criacaoPdf.service";
+import { PdfController } from "@controllers/pdfController";
 
 const router = Router();
 
 router.post("/criarTemplate", async (req: Request, res: Response) => {
   // criarTemplate(req, res);
 
-  const criarcaoPdfService = new CriacaoPdfService();
+  const pdfController = new PdfController();
 
-  criarcaoPdfService.execution(req, res);
+  pdfController.handle(req, res);
 });
 
 export default router;
