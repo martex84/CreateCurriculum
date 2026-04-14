@@ -1,3 +1,5 @@
+import { Browser, Page } from "puppeteer";
+
 export interface TemplatePadrao {
   contato: {
     nome: string;
@@ -19,4 +21,12 @@ export interface RespostaGeracao {
     messageError: string;
   };
   arquivo: string;
+}
+
+export type page = Page;
+export type browser = Browser;
+
+export interface DadosPagina {
+  browser: browser;
+  page: page;
 }
