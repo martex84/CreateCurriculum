@@ -1,13 +1,15 @@
 import { Router, Request, Response } from "express";
-// import { criarTemplate } from "@curriculum/controllers/criarTemplate_controller";
 import { PdfController } from "@controllers/pdfController";
+import { makeCreateTemplates } from "@/main/factories/makeCreateTemplates";
+import { makeCreateCurriculum } from "@/main/factories/makeCreateCurriculum";
 
 const router = Router();
 
 router.post("/criarTemplate", async (req: Request, res: Response) => {
-  // criarTemplate(req, res);
-
-  const pdfController = new PdfController();
+  const pdfController = new PdfController(
+    makeCreateTemplates(),
+    makeCreateCurriculum(),
+  );
 
   pdfController.handle(req, res);
 });

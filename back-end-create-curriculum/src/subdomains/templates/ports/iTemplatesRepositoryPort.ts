@@ -1,15 +1,31 @@
 import { TiposTemplates } from "@templates/types/tiposTemplates";
 import { Templates } from "@/subdomains/templates/domain/entity/templates.entity";
+import { DadosTemplate } from "@/subdomains/templates/types/dadosTemplate";
 
 export interface ITemplatesRepositoryPort {
   /**
-   * Função responsável por gerar um HTML com base no template escolhido os dados informados
-   * @param template Recebe o objeto com os dados do template
-   * @param tipoTemplates Recebe o tipo de template que irá ser utilizado
-   * @returns Retorna uma string contendo o html para geração do template
+   * Contrato para validação de estrutura de dados de template.
+   * Verifica se o objeto recebido possui todos os campos obrigatórios e tipos corretos.
+   * * @param dados - Os dados brutos que serão submetidos à validação.
+   * @returns `true` se os dados estiverem em conformidade com o tipo Template, `false` caso contrário.
    */
-  criarHTMLTemplate(
-    template: Templates,
-    tipoTemplates: TiposTemplates,
-  ): Promise<string>;
+  validarTemplateService(dados: any): dados is {
+    template: Templates;
+    tipo: TiposTemplates;
+  };
+
+  selecionarTemplateHTMLService(tipo: TiposTemplates): Promise<DadosTemplate>;
+
+  /**
+   *
+   * @param dadosUsuario Recebe os dados do usário vindo do template
+   * @param tipoTemplate Recebe o tipo de template que irá ser aplicado
+   * @param dadosTemplate Recebe os dados do template
+   * @returns Retorna a string com o HTML formatado
+   */
+  incluirDadosTemplateHtmlService(
+    dadosUsuario: Templates,
+    tipoTemplate: TiposTemplates,
+    dadosTemplate: DadosTemplate,
+  ): string;
 }

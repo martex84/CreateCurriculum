@@ -17,7 +17,8 @@
       "@templates/*": ["./src/subdomains/templates/*"],
       "@controllers/*": ["./src/infra/http/controllers/*"],
       "@factories/*": ["./src/main/factories/*"]
-    }
+    },
+    "resolveJsonModule": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]

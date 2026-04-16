@@ -1,9 +1,14 @@
 import { Request, Response } from "express";
 import log from "@/config/log";
-import { makeCreateTemplates } from "@/main/factories/makeCreateTemplates";
-import { makeCrateCurriculum } from "@/main/factories/makeCreateCurriculum";
+import { MakeCreateTemplates } from "@/main/factories/makeCreateTemplates";
+import { MakeCreateCurriculum } from "@/main/factories/makeCreateCurriculum";
 
 export class PdfController {
+  constructor(
+    private readonly makeCreateTemplates: MakeCreateTemplates,
+    private readonly makeCrateCurriculum: MakeCreateCurriculum,
+  ) {}
+
   async handle(request: Request, respose: Response) {
     log("Captando dados do body");
 
@@ -11,12 +16,12 @@ export class PdfController {
 
     if (!body) throw new Error("Falha ao localizar os dados do body");
 
-    const { criarTemplateUseCase } = makeCreateTemplates();
+    const { criarTemplateUseCase } = this.makeCreateTemplates;
 
     const templateHtml = await criarTemplateUseCase.execute(body);
 
     if (templateHtml) {
-      const { criarCurriculumUseCase } = makeCrateCurriculum();
+      const { criarCurriculumUseCase } = this.makeCrateCurriculum;
 
       const curriculo = await criarCurriculumUseCase.execution(templateHtml);
 
