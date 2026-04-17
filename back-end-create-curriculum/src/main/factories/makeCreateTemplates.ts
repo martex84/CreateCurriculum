@@ -1,5 +1,5 @@
 import { incluirDadosTemplateHtmlService } from "@/subdomains/templates/domain/services/incluirDadosTemplateHtml.service";
-import { selecionarTemplateHTMLService } from "@/subdomains/templates/domain/services/selecionarDadosTemplate.service";
+import { selecionarTemplateHTMLService } from "@/subdomains/templates/domain/services/selecionarTemplateHtml.service";
 import { validarTemplateService } from "@/subdomains/templates/domain/services/validarTemplate.service";
 import { CriarTemplateUseCase } from "@/subdomains/templates/useCases/criarTemplate.useCase";
 

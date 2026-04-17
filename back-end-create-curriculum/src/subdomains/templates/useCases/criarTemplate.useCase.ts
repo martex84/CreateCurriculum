@@ -4,6 +4,8 @@ import log from "@/config/log";
 import { mensagemError } from "@/subdomains/templates/useCases/criarTemplate.error";
 import { ValidationError } from "@/shared/errors/validation-error";
 import { ITemplatesRepositoryPort } from "@/subdomains/templates/ports/iTemplatesRepositoryPort";
+import { GenerationError } from "@/shared/errors/generation-error";
+import { AppError } from "@/shared/errors/app-error";
 
 export class CriarTemplateUseCase {
   constructor(
@@ -11,14 +13,10 @@ export class CriarTemplateUseCase {
   ) {}
 
   async execute(dados: any): Promise<string | undefined> {
-    log("Validando dados");
     try {
+      log("Validando dados");
       this.iTemplatesRepositoryPort.validarTemplateService(dados);
-    } catch (error) {
-      throw new ValidationError(`${mensagemError.VALIDACAO_DADOS} [${error}]`);
-    }
 
-    try {
       log("Criando variáveis com base no body");
       const template: Templates = dados.template;
       const tipoTemplates: TiposTemplates = dados.tipo;
@@ -29,26 +27,20 @@ export class CriarTemplateUseCase {
           tipoTemplates,
         );
 
-      if (dadosArquivoHtmlBase.html === "" || dadosArquivoHtmlBase.css === "")
-        throw new Error(mensagemError.CAPTACAO_DADOS);
+      log("Gerando HTML Customizado");
 
-      const htmlAtualizado =
+      const htmlCustomizado =
         this.iTemplatesRepositoryPort.incluirDadosTemplateHtmlService(
           template,
           tipoTemplates,
           dadosArquivoHtmlBase,
         );
 
-      if (!htmlAtualizado) throw new Error(mensagemError.GERACAO_HTML);
-
-      return htmlAtualizado;
+      return htmlCustomizado;
     } catch (error) {
-      const mensagemErro = error as Error;
-
-      if (mensagemErro) throw new Error(mensagemErro.message);
-      else {
-        throw new Error(mensagemError.MENSAGEM_GENERICA);
-      }
+      if (error instanceof AppError) {
+        throw error;
+      } else throw new Error(mensagemError.MENSAGEM_GENERICA);
     }
   }
 }

@@ -5,6 +5,7 @@ import {
 import { mensageError } from "./validarTemplate.error";
 import { TiposTemplates } from "@/subdomains/templates/types/tiposTemplates";
 import { ITemplatesRepositoryPort } from "@/subdomains/templates/ports/iTemplatesRepositoryPort";
+import { ValidationError } from "@/shared/errors/validation-error";
 
 /** @inheritdoc */
 export const validarTemplateService: ITemplatesRepositoryPort["validarTemplateService"] =
@@ -100,6 +101,8 @@ export const validarTemplateService: ITemplatesRepositoryPort["validarTemplateSe
     } catch (error) {
       const mensagemErro = error as Error;
 
-      throw new Error(mensagemErro.message);
+      throw new ValidationError(
+        `Os valores não corresponde ao dados de um template: [$mensagemErro.message]`,
+      );
     }
   };
