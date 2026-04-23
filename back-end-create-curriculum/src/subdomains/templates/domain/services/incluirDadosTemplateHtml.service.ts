@@ -25,8 +25,8 @@ export const incluirDadosTemplateHtmlService: ITemplatesRepositoryPort["incluirD
         (Object.keys(dadosUsuario) as (keyof TemplatePadrao)[]).forEach(
           (key) => {
             if (key === "contato") {
-              Object.entries(dadosUsuario.contato).forEach((key, valor) => {
-                html = html.replaceAll(`{${key}}`, valor.toString());
+              Object.entries(dadosUsuario.contato).forEach((dado) => {
+                html = html.replaceAll(`{${dado[0]}}`, dado[1]);
               });
             } else {
               html = html.replaceAll(`{${key}}`, dadosUsuario[key]);
