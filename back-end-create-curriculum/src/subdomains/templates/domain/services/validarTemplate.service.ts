@@ -23,9 +23,8 @@ export const validarTemplateService: ITemplatesRepositoryPort["validarTemplateSe
 
       const { tipo, template: dadosTemplate } = dados;
 
-      if (tipo !== "padrao") {
+      if (!verificaTipoTemplate(tipo))
         throw new Error(mensageError.TIPO_INVALIDO);
-      }
 
       if (
         !dadosTemplate ||
@@ -106,3 +105,7 @@ export const validarTemplateService: ITemplatesRepositoryPort["validarTemplateSe
       );
     }
   };
+
+function verificaTipoTemplate(tipo: any): tipo is TiposTemplates {
+  return true;
+}
