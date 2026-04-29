@@ -8,6 +8,8 @@
     "dev": "tsx watch src/index.ts",
     "test": "jest",
     "test:watch": "jest --watch",
+    "test-unit:watch": "jest tests/unit --watch",
+    "test-spec:watch": "jest tests/integration --watch",
     "test:cov": "jest --coverage",
     "build": "tsx src/index.ts",
     "audit": "auditjs ossi"

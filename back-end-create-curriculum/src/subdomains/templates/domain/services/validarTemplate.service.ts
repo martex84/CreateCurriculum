@@ -102,7 +102,7 @@ export const validarTemplateService: ITemplatesRepositoryPort["validarTemplateSe
       const mensagemErro = error as Error;
 
       throw new ValidationError(
-        `Os valores não corresponde ao dados de um template: [$mensagemErro.message]`,
+        `Os valores não corresponde ao dados de um template: [${mensagemErro.message}]`,
       );
     }
   };
