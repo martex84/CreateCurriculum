@@ -1,8 +1,5 @@
-import { Templates } from "@/subdomains/templates/domain/entity/templates.entity";
 import { CriarTemplateUseCase } from "@/subdomains/templates/useCases/criarTemplate.useCase";
-import { TiposTemplates } from "@/subdomains/templates/types/tiposTemplates";
 import { errors } from "@templates/domain/services/services.errors";
-import { mensageError as validarTemplateMessageError } from "@templates/domain/services/validarTemplate.error";
 import { ValidationError } from "@/shared/errors/validation-error";
 import { validarTemplateService } from "@templates/domain/services/validarTemplate.service";
 import * as validarTemplateServiceFunction from "@templates/domain/services/validarTemplate.service";
@@ -11,39 +8,13 @@ import { selecionarTemplateHTMLService } from "@/subdomains/templates/domain/ser
 import { ITemplatesRepositoryPort } from "@/subdomains/templates/ports/iTemplatesRepositoryPort";
 import { GenerationError } from "@/shared/errors/generation-error";
 import { mensagemError } from "@/subdomains/templates/useCases/criarTemplate.error";
+import { mockDadosTemplate } from "@/tests/mocks/subdomains/templates/domain/entity/template.mock";
 
 describe("CriarTemplateUseCase", () => {
   let iTemplatesRepositoryPort: ITemplatesRepositoryPort;
   let criarTemplateUseCase: CriarTemplateUseCase;
 
-  //Mock para realizar a criação do template
-  let mockDadosTemplate: () => {
-    template: Partial<Templates>;
-    tipo: Partial<TiposTemplates>;
-  };
-
   beforeEach(() => {
-    //Realização do mock antes de cada teste
-    mockDadosTemplate = () => {
-      return {
-        template: {
-          contato: {
-            numero: "123456789",
-            email: "test@example.com",
-            linkdin: "linkedin.com/in/test",
-          },
-          nome: "Test User",
-          formacaoAcademica: "Computer Science",
-          resumoProfissional: "Experienced developer",
-          idiomas: "English, Portuguese",
-          competencias: "JavaScript, TypeScript",
-          historicoProfissional: "Software Engineer at Company X",
-          certificacoes: "AWS Certified",
-        },
-        tipo: "padrao",
-      };
-    };
-
     //Criação do mock das funções utilizada pelo Use Case
     iTemplatesRepositoryPort = {
       validarTemplateService: jest.fn(
@@ -60,8 +31,7 @@ describe("CriarTemplateUseCase", () => {
   // -------------------
 
   test("Verifica se ao passar um template inválido irá ocorrer uma exceção de validação de dados", async () => {
-    let dados = { ...mockDadosTemplate() };
-    dados.template.nome = undefined;
+    let dados = mockDadosTemplate({ template: { nome: undefined } });
 
     //Cria utiliza o spy na função original
     const validarTemplateServiceSpy = jest.spyOn(
@@ -99,7 +69,7 @@ describe("CriarTemplateUseCase", () => {
   // -------------------
 
   test("Verifica se ocorre o retorno de um erro ao gerar um arquivo html ou css inválidos", async () => {
-    let dados = { ...mockDadosTemplate() };
+    let dados = mockDadosTemplate();
 
     (
       iTemplatesRepositoryPort.selecionarTemplateHTMLService as jest.Mock
@@ -124,7 +94,7 @@ describe("CriarTemplateUseCase", () => {
   // -------------------
 
   test("Verifica se ocorre o retorno de um erro ao preencher o html com valores inválidos", async () => {
-    let dados = { ...mockDadosTemplate() };
+    let dados = mockDadosTemplate();
 
     (
       iTemplatesRepositoryPort.incluirDadosTemplateHtmlService as jest.Mock
@@ -149,7 +119,7 @@ describe("CriarTemplateUseCase", () => {
   // -------------------
 
   test("Verifica se ao gerar um erro genério o mesmo é captado pelo useCase", async () => {
-    let dados = { ...mockDadosTemplate() };
+    let dados = mockDadosTemplate();
 
     //Cria utiliza o spy na função original
     const validarTemplateServiceSpy = jest.spyOn(
