@@ -3,7 +3,10 @@ import {
   Templates,
 } from "@/subdomains/templates/domain/entity/templates.entity";
 import { mensageError } from "./validarTemplate.error";
-import { TiposTemplates } from "@/subdomains/templates/types/tiposTemplates";
+import {
+  TiposTemplates,
+  valoresTiposTemplates,
+} from "@/subdomains/templates/types/tiposTemplates";
 import { ITemplatesRepositoryPort } from "@/subdomains/templates/ports/iTemplatesRepositoryPort";
 import { ValidationError } from "@/shared/errors/validation-error";
 
@@ -34,7 +37,7 @@ export const validarTemplateService: ITemplatesRepositoryPort["validarTemplateSe
         throw new Error(mensageError.CAMPO_TEMPLATE_VAZIO);
 
       //Inicia a validação para o template do tipo "padrão"
-      if (dados.tipo === "padrao") {
+      if (tipo === "padrao") {
         //Cria uma template para utilizar na validação
         const template: TemplatePadrao = {
           contato: {
@@ -106,6 +109,11 @@ export const validarTemplateService: ITemplatesRepositoryPort["validarTemplateSe
     }
   };
 
+/**
+ * Verifica se o valore que está sendo validado é o tipo correto para os tipos de templates
+ * @param tipo Recebe o valore que irá ser validado
+ * @returns Retorna true para o caso onde o valor validado é igual ao tipo correto
+ */
 function verificaTipoTemplate(tipo: any): tipo is TiposTemplates {
-  return true;
+  return valoresTiposTemplates.includes(tipo);
 }
