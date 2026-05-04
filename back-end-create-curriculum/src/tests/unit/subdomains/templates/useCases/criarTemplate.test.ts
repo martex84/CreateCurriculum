@@ -33,7 +33,7 @@ describe("CriarTemplateUseCase", () => {
   test("Verifica se ao passar um template inválido irá ocorrer uma exceção de validação de dados", async () => {
     let dados = mockDadosTemplate({ template: { nome: undefined } });
 
-    //Cria utiliza o spy na função original
+    //Utiliza o spy na função original
     const validarTemplateServiceSpy = jest.spyOn(
       validarTemplateServiceFunction,
       "validarTemplateService",
