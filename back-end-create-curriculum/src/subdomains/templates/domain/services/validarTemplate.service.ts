@@ -26,15 +26,20 @@ export const validarTemplateService: ITemplatesRepositoryPort["validarTemplateSe
 
       const { tipo, template: dadosTemplate } = dados;
 
-      if (!verificaTipoTemplate(tipo))
-        throw new Error(mensageError.TIPO_INVALIDO);
-
       if (
         !dadosTemplate ||
         typeof dadosTemplate !== "object" ||
         Array.isArray(dadosTemplate)
       )
-        throw new Error(mensageError.CAMPO_TEMPLATE_VAZIO);
+        throw new Error(mensageError.TEMPLATE_INVALIDO);
+
+      if (
+        !tipo ||
+        Array.isArray(tipo) ||
+        typeof tipo !== "string" ||
+        !verificaTipoTemplate(tipo)
+      )
+        throw new Error(mensageError.TIPO_INVALIDO);
 
       //Inicia a validação para o template do tipo "padrão"
       if (tipo === "padrao") {
@@ -110,7 +115,7 @@ export const validarTemplateService: ITemplatesRepositoryPort["validarTemplateSe
   };
 
 /**
- * Verifica se o valore que está sendo validado é o tipo correto para os tipos de templates
+ * Verifica se o valor que está sendo validado é o tipo correto para os tipos de templates
  * @param tipo Recebe o valore que irá ser validado
  * @returns Retorna true para o caso onde o valor validado é igual ao tipo correto
  */
