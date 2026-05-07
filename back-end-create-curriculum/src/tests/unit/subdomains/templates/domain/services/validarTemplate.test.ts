@@ -3,10 +3,12 @@ import { mensageError } from "@templates/domain/services/validarTemplate.error";
 import { mockDadosTemplate } from "@/tests/mocks/subdomains/templates/domain/entity/template.mock";
 import { validarTemplateService } from "@templates/domain/services/validarTemplate.service";
 
+type TipoErroCampoPadrao = "inexistente" | "diferente";
+
 describe("ValidarTemplate", () => {
   describe("Verifica a lógica geral da função", () => {
     test.each([undefined, "", [undefined]])(
-      "Verifica se apresenta erro para o recebimento de dados como [%s]",
+      "Certifica se é apresentado o erro para o recebimento de dados como [%s]",
       (variacao) => {
         const validacao = () => validarTemplateService(variacao);
 
@@ -17,7 +19,7 @@ describe("ValidarTemplate", () => {
 
     //---------
     test.each([undefined, "", [undefined]])(
-      "Verifica se apresenta erro para o recebimento de templates inválidos por meio do valor [%s]",
+      "Certifica se é apresentado o erro para o recebimento de templates inválidos por meio do valor [%s]",
       (variacao) => {
         const dados = mockDadosTemplate();
 
@@ -33,7 +35,7 @@ describe("ValidarTemplate", () => {
 
     //----------
     test.each([undefined, {}, [undefined], "teste"])(
-      "Verifica se apresenta erro para o recebido de tipo inválidos de template por meio do valor [%s]",
+      "Certifica se é apresentado o erro para o recebido de tipo inválidos de template por meio do valor [%s]",
       (variacao) => {
         const dados = mockDadosTemplate();
 
@@ -48,20 +50,88 @@ describe("ValidarTemplate", () => {
     );
 
     //----------
-    // test("Verifica se apresenta erro caso ");
+    // test("Certifica se é apresentado o erro caso ");
   });
 
   //----------
   describe("Verifica a lógica para templates do tipo padrão", () => {
-    test.skip("Verifica se apresenta erro para o recebimento de dados inválidos para o tipo de template", () => {
-      const nomeCampo = "nome";
+    test.each([
+      ["nome", "nome", undefined],
+      ["numero", "contato", { numero: undefined }],
+    ])(
+      "Certifica se é apresentado um erro ao receber dados inválidos no campo [%s]",
+      (nome, id, valor) => {
+        const dados = mockDadosTemplate({ template: { [id]: valor } });
 
-      const dados = mockDadosTemplate({ template: { [nomeCampo]: undefined } });
+        const validacao = () => validarTemplateService(dados);
 
-      const validacao = () => validarTemplateService(dados);
+        expect(validacao).toThrow(ValidationError);
+        expect(validacao).toThrow(mensageError.CAMPO_DIFERENTE(nome));
+      },
+    );
 
-      expect(validacao).toThrow(ValidationError);
-      expect(validacao).toThrow(mensageError.CAMPO_DIFERENTE(nomeCampo));
-    });
+    //----------
+    test.each([
+      [
+        "diferente" as TipoErroCampoPadrao,
+        (campo: string) => mensageError.CAMPO_DIFERENTE(campo),
+      ],
+      [
+        "inexistente" as TipoErroCampoPadrao,
+        (campo: string) => mensageError.CAMPO_INEXISTENTE(campo),
+      ],
+    ])(
+      "Certifica se é apresentado um erro de campo '%s' no campo contato do template",
+      (tipo: TipoErroCampoPadrao, fcErro: (campo: string) => string) => {
+        let dados = mockDadosTemplate();
+
+        if (!dados.template.contato)
+          throw new Error("Falha na captação do campo contato!");
+
+        type nomeCampos = keyof typeof dados.template.contato;
+
+        const nomeCampo: nomeCampos = "numero";
+
+        if (tipo === "inexistente")
+          delete (dados.template.contato as any)[nomeCampo];
+        else if (tipo === "diferente")
+          (dados.template.contato as any)[nomeCampo] = undefined;
+
+        const validacao = () => validarTemplateService(dados);
+
+        expect(validacao).toThrow(ValidationError);
+        expect(validacao).toThrow(fcErro(nomeCampo));
+      },
+    );
+
+    //----------
+    test.each([
+      [
+        "diferente" as TipoErroCampoPadrao,
+        (campo: string) => mensageError.CAMPO_DIFERENTE(campo),
+      ],
+      [
+        "inexistente" as TipoErroCampoPadrao,
+        (campo: string) => mensageError.CAMPO_INEXISTENTE(campo),
+      ],
+    ])(
+      "Certifica se é apresentado um erro de campo '%s' no atributo do template",
+      (tipo: TipoErroCampoPadrao, fcErro: (campo: string) => string) => {
+        let dados = mockDadosTemplate();
+
+        type nomeCamposTemplate = keyof typeof dados.template;
+
+        const nomeCampo: nomeCamposTemplate = "nome";
+
+        if (tipo === "inexistente") delete (dados.template as any)[nomeCampo];
+        else if (tipo === "diferente")
+          (dados.template as any)[nomeCampo] = undefined;
+
+        const validacao = () => validarTemplateService(dados);
+
+        expect(validacao).toThrow(ValidationError);
+        expect(validacao).toThrow(fcErro(nomeCampo));
+      },
+    );
   });
 });

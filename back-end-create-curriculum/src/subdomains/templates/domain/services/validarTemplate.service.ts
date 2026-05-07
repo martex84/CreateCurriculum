@@ -67,7 +67,7 @@ export const validarTemplateService: ITemplatesRepositoryPort["validarTemplateSe
           //Inicia a validação para o campo contato
           if (key === "contato") {
             if (!keysTemplate.includes(key))
-              throw new Error(mensageError.CAMPO_INESISTENTE(key));
+              throw new Error(mensageError.CAMPO_INEXISTENTE(key));
 
             Object.keys(template.contato).forEach((keyContato) => {
               const keysContatoTemplate = Object.keys(dadosTemplate.contato);
@@ -76,7 +76,7 @@ export const validarTemplateService: ITemplatesRepositoryPort["validarTemplateSe
                 keyContato as keyof TemplatePadrao["contato"];
 
               if (!keysContatoTemplate.includes(keyContato))
-                throw new Error(mensageError.CAMPO_INESISTENTE(key));
+                throw new Error(mensageError.CAMPO_INEXISTENTE(keyContato));
 
               const valorContatoTemplate = dadosTemplate.contato[keyContato];
 
@@ -84,13 +84,13 @@ export const validarTemplateService: ITemplatesRepositoryPort["validarTemplateSe
                 typeof valorContatoTemplate !==
                 typeof template.contato[keyContatoAtual]
               )
-                throw new Error(mensageError.CAMPO_DIFERENTE(key));
+                throw new Error(mensageError.CAMPO_DIFERENTE(keyContato));
             });
           }
           //Realiza a validação para os demais campos
           else {
             if (!keysTemplate.includes(key))
-              throw new Error(mensageError.CAMPO_INESISTENTE(key));
+              throw new Error(mensageError.CAMPO_INEXISTENTE(key));
 
             const valorTemplate = dadosTemplate[key];
 
@@ -98,10 +98,6 @@ export const validarTemplateService: ITemplatesRepositoryPort["validarTemplateSe
               throw new Error(mensageError.CAMPO_DIFERENTE(key));
           }
         });
-      }
-      //Caso não seja encontrado o tipo do template irá retornar um erro
-      else {
-        throw new Error(mensageError.FALHA_TIPO_TEMPLATE);
       }
 
       return true;

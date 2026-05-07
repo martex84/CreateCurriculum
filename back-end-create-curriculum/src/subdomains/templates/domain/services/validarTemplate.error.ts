@@ -6,6 +6,6 @@ export const mensageError = {
   FALHA_TIPO_TEMPLATE: "Falha ao tentar identificar o tipo de template",
   CAMPO_DIFERENTE: (campo: string) =>
     `O tipo do campo '${campo}' é diferente do esperado!`,
-  CAMPO_INESISTENTE: (campo: string) =>
+  CAMPO_INEXISTENTE: (campo: string) =>
     `O campo '${campo}' não existe no template informado!`,
 };
