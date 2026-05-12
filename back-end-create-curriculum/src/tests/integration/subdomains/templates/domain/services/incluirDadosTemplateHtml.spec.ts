@@ -1,4 +1,3 @@
-import { DadosTemplate } from "@templates/types/dadosTemplate";
 import { selecionarTemplateHTMLService } from "@templates/domain/services/selecionarTemplateHtml.service";
 import { incluirDadosTemplateHtmlService } from "@templates/domain/services/incluirDadosTemplateHtml.service";
 import { mockDadosTemplate } from "@/tests/mocks/subdomains/templates/domain/entity/template.mock";
