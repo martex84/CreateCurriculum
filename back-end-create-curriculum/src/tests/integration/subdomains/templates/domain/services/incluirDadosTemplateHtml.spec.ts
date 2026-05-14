@@ -7,21 +7,25 @@ describe("incluirDadosTempalteHtml", () => {
   test("Verificar se é feita a inclusão dos dados do usuário no template html/css", async () => {
     const { template: dadosUsuario, tipo } = mockDadosTemplate();
 
-    const template = await selecionarTemplateHTMLService(tipo);
+    const templateBase = await selecionarTemplateHTMLService(tipo);
 
-    if (!template.html.includes("{nome}"))
-      throw new Error("Falha na geração do campo name no template!");
-
-    const service = incluirDadosTemplateHtmlService(
+    const htmlGerado = incluirDadosTemplateHtmlService(
       dadosUsuario as TemplatePadrao,
       tipo,
-      template,
+      templateBase,
     );
 
-    expect(typeof service).toBe("string");
-    expect(service).toContain("<html");
-    expect(service).toContain("<style");
-    expect(service).not.toContain("{nome}");
-    expect(service).toContain(dadosUsuario.nome);
+    // Validações de estrutura
+    expect(htmlGerado).toContain("<html");
+    expect(htmlGerado).toContain("<style");
+
+    //Validação do retorno do service
+    expect(typeof htmlGerado).toBe("string");
+
+    // Valida se os placeholders foram removidos
+    expect(htmlGerado).not.toContain("{nome}");
+
+    // Valida se os dados reais foram injetados
+    expect(htmlGerado).toContain(dadosUsuario.nome);
   });
 });
