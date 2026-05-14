@@ -2,26 +2,27 @@ import { selecionarTemplateHTMLService } from "@/subdomains/templates/domain/ser
 import { mockDadosTemplate } from "@/tests/mocks/subdomains/templates/domain/entity/template.mock";
 
 describe("SelecionarTempalteHtml", () => {
-  test("Verificar se é realizado a seleção do template html e de css com base ao tipo informado", async () => {
+  test("Deve retornar as strings de HTML e CSS corretamente para um tipo válido", async () => {
     const { template, tipo } = mockDadosTemplate();
 
-    const campoUtilizado = Object.keys(template)[0];
+    const campoUtilizado: keyof typeof template = "nome";
 
-    const verificacao = selecionarTemplateHTMLService(tipo);
+    const resultado = await selecionarTemplateHTMLService(tipo);
 
-    expect(await verificacao).toHaveProperty("html");
-    expect(await verificacao).toHaveProperty("css");
+    // Validação de estrutura e tipos
+    expect(resultado).toHaveProperty("html");
+    expect(resultado).toHaveProperty("css");
+    expect(typeof resultado.html).toBe("string");
+    expect(typeof resultado.css).toBe("string");
 
-    expect(typeof (await verificacao).html).toBe("string");
-    expect(typeof (await verificacao).css).toBe("string");
+    // Validação de conteúdo básico do HTML
+    expect(resultado.html).toContain("<html");
+    expect(resultado.html).toContain("<head");
+    expect(resultado.html).toContain("<body");
+    expect(resultado.html).not.toHaveLength(0);
+    expect(resultado.css).not.toHaveLength(0);
 
-    expect((await verificacao).html).toContain("<html");
-    expect((await verificacao).html).toContain("<head");
-    expect((await verificacao).html).toContain("<body");
-
-    expect((await verificacao).html).not.toHaveLength(0);
-    expect((await verificacao).css).not.toHaveLength(0);
-
-    expect((await verificacao).html).toContain(`{${campoUtilizado}}`);
+    // Verifica se existem placeholders de campos esperados (ex: nome)
+    expect(resultado.html).toContain(`{${campoUtilizado}}`);
   });
 });
