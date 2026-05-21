@@ -1,19 +1,26 @@
-import { incluirDadosTemplateHtmlService } from "@/subdomains/templates/domain/services/incluirDadosTemplateHtml.service";
-import { selecionarTemplateHTMLService } from "@/subdomains/templates/domain/services/selecionarTemplateHtml.service";
-import { validarTemplateService } from "@/subdomains/templates/domain/services/validarTemplate.service";
-import { CriarTemplateUseCase } from "@/subdomains/templates/useCases/criarTemplate.useCase";
+import { incluirDadosTemplateHtmlService } from "@/subdomains/geracao_templates/domain/services/incluirDadosTemplateHtml.service";
+import { CaptarDocumentosAdapter } from "@/subdomains/geracao_templates/adapters/captarDocumentos.adapter";
+import { validarTemplateService } from "@/subdomains/geracao_templates/domain/services/validarTemplate.service";
+import { CriarTemplateUseCase } from "@/subdomains/geracao_templates/useCases/criarTemplate.useCase";
 import { mockDadosTemplate } from "@/tests/mocks/subdomains/templates/domain/entity/template.mock";
+import { getTemplatePath } from "@/subdomains/geracao_templates/adapters/config/templatesPath";
 
 describe("CriarTemplateUseCase", () => {
   let criarTemplateUseCase: CriarTemplateUseCase;
 
-  beforeEach(() => {
+  beforeAll(() => {
+    const captarDadosTemplateHtmlAdapter = new CaptarDocumentosAdapter(
+      getTemplatePath(),
+    );
+
     //Instância do Use Case
-    criarTemplateUseCase = new CriarTemplateUseCase({
-      validarTemplateService,
-      incluirDadosTemplateHtmlService,
-      selecionarTemplateHTMLService,
-    });
+    criarTemplateUseCase = new CriarTemplateUseCase(
+      {
+        validarTemplateService,
+        incluirDadosTemplateHtmlService,
+      },
+      captarDadosTemplateHtmlAdapter,
+    );
   });
 
   test("Deve realizar a criação do template quando é passado os dados corretos", async () => {
