@@ -2,15 +2,16 @@ import { GenerationError } from "@/shared/errors/generation-error";
 import {
   TemplatePadrao,
   Templates,
-} from "@/subdomains/templates/domain/entity/templates.entity";
-import { erros } from "@/subdomains/templates/domain/services/incluirDadosTemplateHtml.error";
-import { selecionarTemplateHTMLService } from "@/subdomains/templates/domain/services/selecionarTemplateHtml.service";
-import { DadosTemplate } from "@/subdomains/templates/types/dadosTemplate";
+} from "@/subdomains/geracao_templates/domain/entity/templates.entity";
+import { erros } from "@/subdomains/geracao_templates/domain/services/incluirDadosTemplateHtml.error";
+import { CaptarDocumentosAdapter } from "@/subdomains/geracao_templates/adapters/captarDocumentos.adapter";
+import { DadosTemplate } from "@/subdomains/geracao_templates/types/dadosTemplate";
 import {
   DadosTemplate as DadosUsuarioTipo,
   mockDadosTemplate,
 } from "@/tests/mocks/subdomains/templates/domain/entity/template.mock";
 import { incluirDadosTemplateHtmlService } from "@templates/domain/services/incluirDadosTemplateHtml.service";
+import { getTemplatePath } from "@/subdomains/geracao_templates/adapters/config/templatesPath";
 
 describe("IncluirDadosTemplateHtml", () => {
   let dadosTemplate: DadosUsuarioTipo;
@@ -19,7 +20,9 @@ describe("IncluirDadosTemplateHtml", () => {
   beforeEach(async () => {
     dadosTemplate = mockDadosTemplate();
 
-    dadosPagina = await selecionarTemplateHTMLService(dadosTemplate.tipo);
+    dadosPagina = await new CaptarDocumentosAdapter(
+      getTemplatePath(),
+    ).captarHtmlCSS("padrao");
   });
 
   describe("Verifica a lógica geral da função", () => {
