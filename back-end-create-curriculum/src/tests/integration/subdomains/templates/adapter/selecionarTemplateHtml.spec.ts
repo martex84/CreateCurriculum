@@ -1,13 +1,21 @@
-import { selecionarTemplateHTMLService } from "@/subdomains/templates/domain/services/selecionarTemplateHtml.service";
+import { CaptarDocumentosAdapter } from "@/subdomains/geracao_templates/adapters/captarDocumentos.adapter";
+import { ITemplatesCaptarDocumentosAdapterPort } from "@/subdomains/geracao_templates/ports/iTemplatesCaptarDocumentosAdapterPort";
 import { mockDadosTemplate } from "@/tests/mocks/subdomains/templates/domain/entity/template.mock";
+import { getTemplatePath } from "@/subdomains/geracao_templates/adapters/config/templatesPath";
 
 describe("SelecionarTempalteHtml", () => {
+  let captarDocumentoAdapter: ITemplatesCaptarDocumentosAdapterPort;
+
+  beforeAll(() => {
+    captarDocumentoAdapter = new CaptarDocumentosAdapter(getTemplatePath());
+  });
+
   test("Deve retornar as strings de HTML e CSS corretamente para um tipo válido", async () => {
     const { template, tipo } = mockDadosTemplate();
 
     const campoUtilizado: keyof typeof template = "nome";
 
-    const resultado = await selecionarTemplateHTMLService(tipo);
+    const resultado = await captarDocumentoAdapter.captarHtmlCSS(tipo);
 
     // Validação de estrutura e tipos
     expect(resultado).toHaveProperty("html");
