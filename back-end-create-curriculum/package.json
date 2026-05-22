@@ -8,9 +8,9 @@
     "dev": "tsx watch src/index.ts",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test-unit:watch": "jest tests/unit --watch",
-    "test-spec:watch": "jest tests/integration --watch",
-    "test-atual": "jest unit/subdomains/templates/domain/services/validarTemplate.test.ts --watch",
+    "test-unit": "jest tests/unit",
+    "test-spec": "jest tests/integration",
+    "test-atual": "jest tests/unit/subdomains/templates/useCases/criarTemplate.test.ts --watch",
     "test:cov": "jest --coverage",
     "build": "tsx src/index.ts",
     "audit": "auditjs ossi"
