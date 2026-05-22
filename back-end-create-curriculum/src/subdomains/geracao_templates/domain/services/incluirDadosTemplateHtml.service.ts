@@ -1,16 +1,16 @@
 import {
   Templates,
   TemplatePadrao,
-} from "@/subdomains/templates/domain/entity/templates.entity";
-import { TiposTemplates } from "@/subdomains/templates/types/tiposTemplates";
+} from "@/subdomains/geracao_templates/domain/entity/templates.entity";
+import { TiposTemplates } from "@/subdomains/geracao_templates/types/tiposTemplates";
 import { DadosTemplate } from "@templates/types/dadosTemplate";
-import { ITemplatesRepositoryPort } from "@templates/ports/iTemplatesRepositoryPort";
+import { ITemplatesServicePort } from "@/subdomains/geracao_templates/ports/iTemplatesServicePort";
 import { GenerationError } from "@/shared/errors/generation-error";
-import { errors as errosGerais } from "@/subdomains/templates/domain/services/services.errors";
+import { errors as errosGerais } from "@/subdomains/geracao_templates/domain/services/services.errors";
 import { erros } from "./incluirDadosTemplateHtml.error";
 
 /**@inheritdoc */
-export const incluirDadosTemplateHtmlService: ITemplatesRepositoryPort["incluirDadosTemplateHtmlService"] =
+export const incluirDadosTemplateHtmlService: ITemplatesServicePort["incluirDadosTemplateHtmlService"] =
   (
     dadosUsuario: Templates,
     tipoTemplate: TiposTemplates,

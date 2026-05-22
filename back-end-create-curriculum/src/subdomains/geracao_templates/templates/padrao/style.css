@@ -1,0 +1,131 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+i{
+    width: 20px;
+    height: 20px;
+}
+
+ol,ul{
+    /* padding-left: 20px; */
+}
+
+.containerPrincipal {
+  width: 210mm;
+  height: 297mm;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.containerNome{
+    width: 400px;
+    height: 150px;
+}
+
+.containerFoto{
+    width: 100px;
+    height: 100px;
+    margin-right: 40px;
+}
+
+.containerFoto > img{
+    width: 100%;
+    height: 100%;
+
+    border-radius: 100%;
+}
+
+.containerContato{
+    height: 70px;
+    font-size: 18px;
+}
+
+.containerContato span{
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+
+.containerFormacaoAcademica{
+    height: 200px;
+    max-height: 200px;
+}
+
+.containerResumoProfissional{
+    height: 300px;
+    max-height: 300px;
+}
+
+.containerIdioma{
+    height: 100px;
+    max-height: 100px;
+}
+
+.containerCertificacoes{
+    height: 300px;
+    max-height: 300px;
+}
+
+.columLeft{
+    min-width: 300px;
+    max-width: 300px;
+}
+
+.bordarTop{
+    border-top: 3px solid #dcaa41;
+}
+
+.bordarBotton{
+    border-bottom: 3px solid #dcaa41;
+}
+
+.bordarRight{
+    border-right: 3px solid #dcaa41;
+}
+
+.displayFlex{
+    display: flex;
+}
+
+.flexColumn{
+    flex-direction: column;
+}
+
+.justifyBetween{
+    justify-content: space-between;
+}
+
+.itemCenter{
+    align-items: center;
+}
+
+.justifyCenter{
+    justify-content: center;
+}
+
+.heightTotal{
+    height: 100%;
+}
+
+.widthTotal{
+    width: 100%;
+}
+
+.paddingTopLeft{
+    padding: 5px 0 0 5px;
+}
+
+.paddingRightLeft{
+    padding: 0 5px 0 5px;
+}
+
+.marginSmall{
+    margin-bottom: 20px;
+}
+
+
+.paddingLeft{
+    padding-left: 20px;
+}
