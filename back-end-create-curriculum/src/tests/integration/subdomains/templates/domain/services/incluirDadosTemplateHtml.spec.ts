@@ -1,18 +1,25 @@
-import { selecionarTemplateHTMLService } from "@templates/domain/services/selecionarTemplateHtml.service";
+import { CaptarDocumentosAdapter } from "@/subdomains/geracao_templates/adapters/captarDocumentos.adapter";
 import { incluirDadosTemplateHtmlService } from "@templates/domain/services/incluirDadosTemplateHtml.service";
 import { mockDadosTemplate } from "@/tests/mocks/subdomains/templates/domain/entity/template.mock";
-import { TemplatePadrao } from "@/subdomains/templates/domain/entity/templates.entity";
+import { TemplatePadrao } from "@/subdomains/geracao_templates/domain/entity/templates.entity";
+import { getTemplatePath } from "@/subdomains/geracao_templates/adapters/config/templatesPath";
 
-describe("incluirDadosTempalteHtml", () => {
+describe("incluirDadosTemplateHtml", () => {
+  let captarDocumentoAdapter: CaptarDocumentosAdapter;
+
+  beforeAll(() => {
+    captarDocumentoAdapter = new CaptarDocumentosAdapter(getTemplatePath());
+  });
+
   test("Verificar se é feita a inclusão dos dados do usuário no template html/css", async () => {
     const { template: dadosUsuario, tipo } = mockDadosTemplate();
 
-    const templateBase = await selecionarTemplateHTMLService(tipo);
+    const documento = await captarDocumentoAdapter.captarHtmlCSS(tipo);
 
     const htmlGerado = incluirDadosTemplateHtmlService(
       dadosUsuario as TemplatePadrao,
       tipo,
-      templateBase,
+      documento,
     );
 
     // Validações de estrutura
