@@ -1,18 +1,25 @@
-import { incluirDadosTemplateHtmlService } from "@/subdomains/templates/domain/services/incluirDadosTemplateHtml.service";
-import { selecionarTemplateHTMLService } from "@/subdomains/templates/domain/services/selecionarTemplateHtml.service";
-import { validarTemplateService } from "@/subdomains/templates/domain/services/validarTemplate.service";
-import { CriarTemplateUseCase } from "@/subdomains/templates/useCases/criarTemplate.useCase";
+import { incluirDadosTemplateHtmlService } from "@/subdomains/geracao_templates/domain/services/incluirDadosTemplateHtml.service";
+import { CaptarDocumentosAdapter } from "@/subdomains/geracao_templates/adapters/captarDocumentos.adapter";
+import { validarTemplateService } from "@/subdomains/geracao_templates/domain/services/validarTemplate.service";
+import { CriarTemplateUseCase } from "@/subdomains/geracao_templates/useCases/criarTemplate.useCase";
+import { getTemplatePath } from "@/subdomains/geracao_templates/adapters/config/templatesPath";
 
 export interface MakeCreateTemplates {
   criarTemplateUseCase: CriarTemplateUseCase;
 }
 
 export const makeCreateTemplates = () => {
-  const criarTemplateUseCase = new CriarTemplateUseCase({
-    validarTemplateService,
-    incluirDadosTemplateHtmlService,
-    selecionarTemplateHTMLService,
-  });
+  const captarDadosTemplateHtmlAdapter = new CaptarDocumentosAdapter(
+    getTemplatePath(),
+  );
+
+  const criarTemplateUseCase = new CriarTemplateUseCase(
+    {
+      validarTemplateService,
+      incluirDadosTemplateHtmlService,
+    },
+    captarDadosTemplateHtmlAdapter,
+  );
 
   return {
     criarTemplateUseCase,
