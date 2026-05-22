@@ -1,9 +1,9 @@
-import { incluirDadosTemplateHtmlService } from "@/subdomains/geracao_templates/domain/services/incluirDadosTemplateHtml.service";
-import { CaptarDocumentosAdapter } from "@/subdomains/geracao_templates/adapters/captarDocumentos.adapter";
-import { validarTemplateService } from "@/subdomains/geracao_templates/domain/services/validarTemplate.service";
-import { CriarTemplateUseCase } from "@/subdomains/geracao_templates/useCases/criarTemplate.useCase";
+import { incluirDadosTemplateHtmlService } from "@geracao_templates/domain/services/incluirDadosTemplateHtml.service";
+import { CaptarDocumentosAdapter } from "@geracao_templates/adapters/captarDocumentos.adapter";
+import { validarTemplateService } from "@geracao_templates/domain/services/validarTemplate.service";
+import { CriarTemplateUseCase } from "@geracao_templates/useCases/criarTemplate.useCase";
 import { mockDadosTemplate } from "@/tests/mocks/subdomains/templates/domain/entity/template.mock";
-import { getTemplatePath } from "@/subdomains/geracao_templates/adapters/config/templatesPath";
+import { getTemplatePath } from "@geracao_templates/adapters/config/templatesPath";
 
 describe("CriarTemplateUseCase", () => {
   let criarTemplateUseCase: CriarTemplateUseCase;

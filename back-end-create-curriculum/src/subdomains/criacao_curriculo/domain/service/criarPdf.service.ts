@@ -1,3 +1,3 @@
-// import { DadosPagina } from "@/subdomains/curriculum/adapters/puppeteerCurriculumAdapter";
+// import { DadosPagina } from "@criacao_curriculo/adapters/puppeteerCurriculumAdapter";
 
 // export function criarPdfService(dadosPages: DadosPagina) {}

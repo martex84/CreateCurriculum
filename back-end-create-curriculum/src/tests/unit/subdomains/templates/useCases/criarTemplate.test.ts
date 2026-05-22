@@ -1,15 +1,15 @@
-import { CriarTemplateUseCase } from "@/subdomains/geracao_templates/useCases/criarTemplate.useCase";
-import { errors } from "@templates/domain/services/services.errors";
+import { CriarTemplateUseCase } from "@geracao_templates/useCases/criarTemplate.useCase";
+import { errors } from "@geracao_templates/domain/services/services.errors";
 import { ValidationError } from "@/shared/errors/validation-error";
-import { validarTemplateService } from "@templates/domain/services/validarTemplate.service";
-import * as validarTemplateServiceFunction from "@templates/domain/services/validarTemplate.service";
-import { incluirDadosTemplateHtmlService } from "@templates/domain/services/incluirDadosTemplateHtml.service";
-import { CaptarDocumentosAdapter } from "@/subdomains/geracao_templates/adapters/captarDocumentos.adapter";
-import { ITemplatesServicePort } from "@/subdomains/geracao_templates/ports/iTemplatesServicePort";
+import { validarTemplateService } from "@geracao_templates/domain/services/validarTemplate.service";
+import * as validarTemplateServiceFunction from "@geracao_templates/domain/services/validarTemplate.service";
+import { incluirDadosTemplateHtmlService } from "@geracao_templates/domain/services/incluirDadosTemplateHtml.service";
+import { CaptarDocumentosAdapter } from "@geracao_templates/adapters/captarDocumentos.adapter";
+import { ITemplatesServicePort } from "@geracao_templates/ports/iTemplatesServicePort";
 import { GenerationError } from "@/shared/errors/generation-error";
-import { mensagemError } from "@/subdomains/geracao_templates/useCases/criarTemplate.error";
+import { mensagemError } from "@geracao_templates/useCases/criarTemplate.error";
 import { mockDadosTemplate } from "@/tests/mocks/subdomains/templates/domain/entity/template.mock";
-import { getTemplatePath } from "@/subdomains/geracao_templates/adapters/config/templatesPath";
+import { getTemplatePath } from "@geracao_templates/adapters/config/templatesPath";
 
 describe("CriarTemplateUseCase", () => {
   let iTemplatesServicePort: ITemplatesServicePort;

@@ -1,8 +1,8 @@
-import { CaptarDocumentosAdapter } from "@/subdomains/geracao_templates/adapters/captarDocumentos.adapter";
-import { incluirDadosTemplateHtmlService } from "@templates/domain/services/incluirDadosTemplateHtml.service";
+import { CaptarDocumentosAdapter } from "@geracao_templates/adapters/captarDocumentos.adapter";
+import { incluirDadosTemplateHtmlService } from "@geracao_templates/domain/services/incluirDadosTemplateHtml.service";
 import { mockDadosTemplate } from "@/tests/mocks/subdomains/templates/domain/entity/template.mock";
-import { TemplatePadrao } from "@/subdomains/geracao_templates/domain/entity/templates.entity";
-import { getTemplatePath } from "@/subdomains/geracao_templates/adapters/config/templatesPath";
+import { TemplatePadrao } from "@geracao_templates/domain/entity/templates.entity";
+import { getTemplatePath } from "@geracao_templates/adapters/config/templatesPath";
 
 describe("incluirDadosTemplateHtml", () => {
   let captarDocumentoAdapter: CaptarDocumentosAdapter;

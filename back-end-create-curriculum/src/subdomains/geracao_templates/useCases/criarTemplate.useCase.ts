@@ -1,12 +1,12 @@
-import { Templates } from "@/subdomains/geracao_templates/domain/entity/templates.entity";
-import { TiposTemplates } from "@/subdomains/geracao_templates/types/tiposTemplates";
+import { Templates } from "@geracao_templates/domain/entity/templates.entity";
+import { TiposTemplates } from "@geracao_templates/types/tiposTemplates";
 import log from "@/config/log";
-import { mensagemError } from "@/subdomains/geracao_templates/useCases/criarTemplate.error";
+import { mensagemError } from "@geracao_templates/useCases/criarTemplate.error";
 import { ValidationError } from "@/shared/errors/validation-error";
-import { ITemplatesServicePort } from "@/subdomains/geracao_templates/ports/iTemplatesServicePort";
+import { ITemplatesServicePort } from "@geracao_templates/ports/iTemplatesServicePort";
 import { GenerationError } from "@/shared/errors/generation-error";
 import { AppError } from "@/shared/errors/app-error";
-import { ITemplatesCaptarDocumentosAdapterPort } from "@/subdomains/geracao_templates/ports/iTemplatesCaptarDocumentosAdapterPort";
+import { ITemplatesCaptarDocumentosAdapterPort } from "@geracao_templates/ports/iTemplatesCaptarDocumentosAdapterPort";
 
 export class CriarTemplateUseCase {
   constructor(

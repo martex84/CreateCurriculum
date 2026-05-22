@@ -12,9 +12,9 @@
     "types": ["node", "jest"],
     "paths": {
       "@/*": ["./src/*"],
-      "@curriculum/*": ["./src/subdomains/curriculum/*"],
+      "@criacao_curriculo/*": ["./src/subdomains/criacao_curriculo/*"],
       "@routes/*": ["./src/routes/*"],
-      "@templates/*": ["./src/subdomains/templates/*"],
+      "@geracao_templates/*": ["./src/subdomains/geracao_templates/*"],
       "@controllers/*": ["./src/infra/http/controllers/*"],
       "@factories/*": ["./src/main/factories/*"]
     },

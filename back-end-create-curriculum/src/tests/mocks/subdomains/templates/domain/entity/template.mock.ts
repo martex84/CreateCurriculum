@@ -1,5 +1,5 @@
-import { Templates } from "@/subdomains/templates/domain/entity/templates.entity";
-import { TiposTemplates } from "@/subdomains/templates/types/tiposTemplates";
+import { Templates } from "@geracao_templates/domain/entity/templates.entity";
+import { TiposTemplates } from "@geracao_templates/types/tiposTemplates";
 
 export interface DadosTemplate {
   template: Partial<Templates>;

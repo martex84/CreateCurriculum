@@ -2,16 +2,16 @@ import { GenerationError } from "@/shared/errors/generation-error";
 import {
   TemplatePadrao,
   Templates,
-} from "@/subdomains/geracao_templates/domain/entity/templates.entity";
-import { erros } from "@/subdomains/geracao_templates/domain/services/incluirDadosTemplateHtml.error";
-import { CaptarDocumentosAdapter } from "@/subdomains/geracao_templates/adapters/captarDocumentos.adapter";
-import { DadosTemplate } from "@/subdomains/geracao_templates/types/dadosTemplate";
+} from "@geracao_templates/domain/entity/templates.entity";
+import { erros } from "@geracao_templates/domain/services/incluirDadosTemplateHtml.error";
+import { CaptarDocumentosAdapter } from "@geracao_templates/adapters/captarDocumentos.adapter";
+import { DadosTemplate } from "@geracao_templates/types/dadosTemplate";
 import {
   DadosTemplate as DadosUsuarioTipo,
   mockDadosTemplate,
 } from "@/tests/mocks/subdomains/templates/domain/entity/template.mock";
-import { incluirDadosTemplateHtmlService } from "@templates/domain/services/incluirDadosTemplateHtml.service";
-import { getTemplatePath } from "@/subdomains/geracao_templates/adapters/config/templatesPath";
+import { incluirDadosTemplateHtmlService } from "@geracao_templates/domain/services/incluirDadosTemplateHtml.service";
+import { getTemplatePath } from "@geracao_templates/adapters/config/templatesPath";
 
 describe("IncluirDadosTemplateHtml", () => {
   let dadosTemplate: DadosUsuarioTipo;

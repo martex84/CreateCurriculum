@@ -1,7 +1,7 @@
-import { CaptarDocumentosAdapter } from "@/subdomains/geracao_templates/adapters/captarDocumentos.adapter";
-import { ITemplatesCaptarDocumentosAdapterPort } from "@/subdomains/geracao_templates/ports/iTemplatesCaptarDocumentosAdapterPort";
+import { CaptarDocumentosAdapter } from "@geracao_templates/adapters/captarDocumentos.adapter";
+import { ITemplatesCaptarDocumentosAdapterPort } from "@geracao_templates/ports/iTemplatesCaptarDocumentosAdapterPort";
 import { mockDadosTemplate } from "@/tests/mocks/subdomains/templates/domain/entity/template.mock";
-import { getTemplatePath } from "@/subdomains/geracao_templates/adapters/config/templatesPath";
+import { getTemplatePath } from "@geracao_templates/adapters/config/templatesPath";
 
 describe("SelecionarTempalteHtml", () => {
   let captarDocumentoAdapter: ITemplatesCaptarDocumentosAdapterPort;

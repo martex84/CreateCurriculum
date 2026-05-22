@@ -1,4 +1,4 @@
-import { validarTemplateService } from "@templates/domain/services/validarTemplate.service";
+import { validarTemplateService } from "@geracao_templates/domain/services/validarTemplate.service";
 import {
   DadosTemplate,
   mockDadosTemplate,

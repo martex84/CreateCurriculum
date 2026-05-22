@@ -1,12 +1,12 @@
 import {
   Templates,
   TemplatePadrao,
-} from "@/subdomains/geracao_templates/domain/entity/templates.entity";
-import { TiposTemplates } from "@/subdomains/geracao_templates/types/tiposTemplates";
-import { DadosTemplate } from "@templates/types/dadosTemplate";
-import { ITemplatesServicePort } from "@/subdomains/geracao_templates/ports/iTemplatesServicePort";
+} from "@geracao_templates/domain/entity/templates.entity";
+import { TiposTemplates } from "@geracao_templates/types/tiposTemplates";
+import { DadosTemplate } from "@geracao_templates/types/dadosTemplate";
+import { ITemplatesServicePort } from "@geracao_templates/ports/iTemplatesServicePort";
 import { GenerationError } from "@/shared/errors/generation-error";
-import { errors as errosGerais } from "@/subdomains/geracao_templates/domain/services/services.errors";
+import { errors as errosGerais } from "@geracao_templates/domain/services/services.errors";
 import { erros } from "./incluirDadosTemplateHtml.error";
 
 /**@inheritdoc */

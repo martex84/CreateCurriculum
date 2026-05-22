@@ -1,5 +1,5 @@
-import { Curriculum } from "@/subdomains/curriculum/domain/entity/curriculum.entity";
-import { ICurriculumPort } from "@curriculum/ports/iCurriculumPort";
+import { Curriculum } from "@criacao_curriculo/domain/entity/curriculum.entity";
+import { ICurriculumPort } from "@criacao_curriculo/ports/iCurriculumPort";
 
 export class CriarCurriculumUseCase {
   constructor(private readonly ICurriculumPort: ICurriculumPort) {}

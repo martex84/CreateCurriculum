@@ -1,11 +1,11 @@
 import log from "@/config/log";
-import { Curriculum } from "@/subdomains/curriculum/domain/entity/curriculum.entity";
-import { ICurriculumPort } from "@/subdomains/curriculum/ports/iCurriculumPort";
-import { DadosPagina, page } from "@curriculum/types/geracaoPdf";
+import { Curriculum } from "@criacao_curriculo/domain/entity/curriculum.entity";
+import { ICurriculumPort } from "@criacao_curriculo/ports/iCurriculumPort";
+import { DadosPagina, page } from "@criacao_curriculo/types/geracaoPdf";
 import path from "node:path";
 import fs from "node:fs";
 import puppeteer from "puppeteer";
-import { localArquivoPDF } from "@/subdomains/curriculum/domain/constants/locals";
+import { localArquivoPDF } from "@criacao_curriculo/domain/constants/locals";
 
 export class PuppeteerCurriculumAdapter implements ICurriculumPort {
   async criarCurriculum(html: string): Promise<Curriculum> {

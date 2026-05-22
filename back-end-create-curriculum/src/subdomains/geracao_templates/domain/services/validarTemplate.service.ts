@@ -1,13 +1,13 @@
 import {
   TemplatePadrao,
   Templates,
-} from "@/subdomains/geracao_templates/domain/entity/templates.entity";
+} from "@geracao_templates/domain/entity/templates.entity";
 import { mensageError } from "./validarTemplate.error";
 import {
   TiposTemplates,
   valoresTiposTemplates,
-} from "@/subdomains/geracao_templates/types/tiposTemplates";
-import { ITemplatesServicePort } from "@/subdomains/geracao_templates/ports/iTemplatesServicePort";
+} from "@geracao_templates/types/tiposTemplates";
+import { ITemplatesServicePort } from "@geracao_templates/ports/iTemplatesServicePort";
 import { ValidationError } from "@/shared/errors/validation-error";
 
 /** @inheritdoc */

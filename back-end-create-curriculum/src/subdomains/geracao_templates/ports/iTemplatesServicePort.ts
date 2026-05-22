@@ -1,6 +1,6 @@
-import { TiposTemplates } from "@templates/types/tiposTemplates";
-import { Templates } from "@/subdomains/geracao_templates/domain/entity/templates.entity";
-import { DadosTemplate } from "@/subdomains/geracao_templates/types/dadosTemplate";
+import { TiposTemplates } from "@geracao_templates/types/tiposTemplates";
+import { Templates } from "@geracao_templates/domain/entity/templates.entity";
+import { DadosTemplate } from "@geracao_templates/types/dadosTemplate";
 
 export interface ITemplatesServicePort {
   /**

@@ -1,5 +1,5 @@
-import { CriarCurriculumUseCase } from "@/subdomains/curriculum/useCase/criarCurriculum.useCase";
-import { PuppeteerCurriculumAdapter } from "@curriculum/adapters/puppeteerCurriculumAdapter";
+import { CriarCurriculumUseCase } from "@criacao_curriculo/useCase/criarCurriculum.useCase";
+import { PuppeteerCurriculumAdapter } from "@criacao_curriculo/adapters/puppeteerCurriculumAdapter";
 
 export interface MakeCreateCurriculum {
   criarCurriculumUseCase: CriarCurriculumUseCase;

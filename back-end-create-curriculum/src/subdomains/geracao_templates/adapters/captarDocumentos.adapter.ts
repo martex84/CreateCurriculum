@@ -1,9 +1,9 @@
 import fs from "node:fs";
-import { TiposTemplates } from "@/subdomains/geracao_templates/types/tiposTemplates";
-import { DadosTemplate } from "@templates/types/dadosTemplate";
+import { TiposTemplates } from "@geracao_templates/types/tiposTemplates";
+import { DadosTemplate } from "@geracao_templates/types/dadosTemplate";
 import { GenerationError } from "@/shared/errors/generation-error";
 import { erros } from "./captarDocumentos.error";
-import { ITemplatesCaptarDocumentosAdapterPort } from "@/subdomains/geracao_templates/ports/iTemplatesCaptarDocumentosAdapterPort";
+import { ITemplatesCaptarDocumentosAdapterPort } from "@geracao_templates/ports/iTemplatesCaptarDocumentosAdapterPort";
 
 export class CaptarDocumentosAdapter implements ITemplatesCaptarDocumentosAdapterPort {
   constructor(private readonly localArquivo: string) {}
