@@ -10,6 +10,7 @@ import { GenerationError } from "@/shared/errors/generation-error";
 import { mensagemError } from "@geracao_templates/useCases/criarTemplate.error";
 import { mockDadosTemplate } from "@/tests/mocks/subdomains/geracao_templates/domain/entity/template.mock";
 import { getTemplatePath } from "@geracao_templates/adapters/config/templatesPath";
+import { CriacaoLogs } from "@/config/log";
 
 describe("CriarTemplateUseCase", () => {
   let iTemplatesServicePort: ITemplatesServicePort;
@@ -18,8 +19,15 @@ describe("CriarTemplateUseCase", () => {
 
   beforeEach(() => {
     captarDocumentosAdapter = new CaptarDocumentosAdapter(getTemplatePath());
+    const criacaoLogs = new CriacaoLogs();
 
     jest.spyOn(captarDocumentosAdapter, "captarHtmlCSS");
+
+    const spyLog = jest.spyOn(criacaoLogs, "execution");
+
+    spyLog.mockImplementation((message: string | object) => {
+      return Promise.resolve();
+    });
 
     //Criação do mock das funções utilizada pelo Use Case
     iTemplatesServicePort = {
@@ -33,6 +41,7 @@ describe("CriarTemplateUseCase", () => {
     criarTemplateUseCase = new CriarTemplateUseCase(
       iTemplatesServicePort,
       captarDocumentosAdapter,
+      criacaoLogs,
     );
   });
 

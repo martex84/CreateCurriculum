@@ -1,10 +1,13 @@
-import log from "./log";
+import { CriacaoLogs } from "./log";
 import express from "express";
 import cors from "cors";
 import router from "../routes/routes";
 
 class Aplication {
   static async main() {
+    const criacaoLogs = new CriacaoLogs();
+    const log = criacaoLogs.execution;
+
     log("Initial Aplication");
 
     log("Iniciando o servidor!");
