@@ -4,6 +4,7 @@ import { DadosTemplate } from "@geracao_templates/types/dadosTemplate";
 import { GenerationError } from "@/shared/errors/generation-error";
 import { erros } from "./captarDocumentos.error";
 import { ITemplatesCaptarDocumentosAdapterPort } from "@geracao_templates/ports/iTemplatesCaptarDocumentosAdapterPort";
+import { valoresTiposTemplates } from "@geracao_templates/types/tiposTemplates";
 
 export class CaptarDocumentosAdapter implements ITemplatesCaptarDocumentosAdapterPort {
   constructor(private readonly localArquivo: string) {}
@@ -11,6 +12,9 @@ export class CaptarDocumentosAdapter implements ITemplatesCaptarDocumentosAdapte
   async captarHtmlCSS(tipoTemplate: TiposTemplates) {
     try {
       if (!tipoTemplate) throw new Error(erros.erroRecebimentoTipoTemplate);
+
+      if (!Object.values(valoresTiposTemplates).includes(tipoTemplate))
+        throw new Error(erros.erroTipoTemplateInvalido);
 
       let dadosTemplate: DadosTemplate = {
         html: "",
@@ -23,21 +27,39 @@ export class CaptarDocumentosAdapter implements ITemplatesCaptarDocumentosAdapte
         nomeLocal = "padrao";
 
         dadosTemplate.html = fs
-          .readFileSync(this.localArquivo + nomeLocal + "/" + "index.html")
+          .readFileSync(`${this.localArquivo}/${nomeLocal}/index.html`)
           .toString();
 
         dadosTemplate.css = fs
-          .readFileSync(this.localArquivo + nomeLocal + "/" + "style.css")
+          .readFileSync(`${this.localArquivo}/${nomeLocal}/style.css`)
           .toString();
-      } else throw new Error(erros.erroTipoTemplateInvalido);
+      }
 
       if (dadosTemplate.html === "" || dadosTemplate.css === "")
-        throw new Error("Falha ao tentar preencher os dados do template!");
+        throw new GenerationError(erros.erroArquivoInvalido, {
+          tipo: dadosTemplate.html === "" ? "html" : "css",
+        });
 
       return dadosTemplate;
     } catch (error: any) {
+      let message;
+      let detalhes = error?.detalhes ? error.detalhes : undefined;
+
+      if (error.code) {
+        if (error.code === "ENOENT") {
+          message = erros.erroArquivoNaoEncontrado;
+
+          detalhes = {
+            path: error.path,
+          };
+        }
+      }
+
+      if (!message) message = error.message;
+
       throw new GenerationError(
-        `Falha na captação dos dados do template : [${error.message}]`,
+        `Falha na captação dos dados do template : [${message}]`,
+        detalhes,
       );
     }
   }
