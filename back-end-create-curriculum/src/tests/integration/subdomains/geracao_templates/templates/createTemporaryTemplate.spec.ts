@@ -18,7 +18,7 @@ describe("CreateTemporaryTemplate", () => {
       "tests",
       "integration",
       "subdomains",
-      "templates",
+      "geracao_templates",
       "templates",
       nomePastaPrincipal,
     );

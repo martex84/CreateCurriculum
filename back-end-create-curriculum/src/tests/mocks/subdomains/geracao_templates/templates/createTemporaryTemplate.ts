@@ -31,7 +31,7 @@ export class CreateTemporaryTemplate {
           "tests",
           "mocks",
           "subdomains",
-          "templates",
+          "geracao_templates",
           "templates",
         );
 
