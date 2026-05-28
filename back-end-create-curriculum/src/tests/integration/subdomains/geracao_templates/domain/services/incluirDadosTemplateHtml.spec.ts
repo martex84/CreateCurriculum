@@ -1,6 +1,6 @@
 import { CaptarDocumentosAdapter } from "@geracao_templates/adapters/captarDocumentos.adapter";
 import { incluirDadosTemplateHtmlService } from "@geracao_templates/domain/services/incluirDadosTemplateHtml.service";
-import { mockDadosTemplate } from "@/tests/mocks/subdomains/templates/domain/entity/template.mock";
+import { mockDadosTemplate } from "@/tests/mocks/subdomains/geracao_templates/domain/entity/template.mock";
 import { TemplatePadrao } from "@geracao_templates/domain/entity/templates.entity";
 import { getTemplatePath } from "@geracao_templates/adapters/config/templatesPath";
 

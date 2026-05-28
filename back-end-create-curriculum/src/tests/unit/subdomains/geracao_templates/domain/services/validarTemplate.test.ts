@@ -1,6 +1,6 @@
 import { ValidationError } from "@/shared/errors/validation-error";
 import { mensageError } from "@geracao_templates/domain/services/validarTemplate.error";
-import { mockDadosTemplate } from "@/tests/mocks/subdomains/templates/domain/entity/template.mock";
+import { mockDadosTemplate } from "@/tests/mocks/subdomains/geracao_templates/domain/entity/template.mock";
 import { validarTemplateService } from "@geracao_templates/domain/services/validarTemplate.service";
 
 type TipoErroCampoPadrao = "inexistente" | "diferente";

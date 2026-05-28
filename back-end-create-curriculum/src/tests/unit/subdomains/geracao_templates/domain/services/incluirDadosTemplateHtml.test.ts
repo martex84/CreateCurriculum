@@ -9,7 +9,7 @@ import { DadosTemplate } from "@geracao_templates/types/dadosTemplate";
 import {
   DadosTemplate as DadosUsuarioTipo,
   mockDadosTemplate,
-} from "@/tests/mocks/subdomains/templates/domain/entity/template.mock";
+} from "@/tests/mocks/subdomains/geracao_templates/domain/entity/template.mock";
 import { incluirDadosTemplateHtmlService } from "@geracao_templates/domain/services/incluirDadosTemplateHtml.service";
 import { getTemplatePath } from "@geracao_templates/adapters/config/templatesPath";
 

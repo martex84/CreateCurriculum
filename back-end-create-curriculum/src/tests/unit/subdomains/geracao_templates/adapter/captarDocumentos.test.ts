@@ -7,7 +7,7 @@ import { getTemplatePath } from "@geracao_templates/adapters/config/templatesPat
 import {
   CreateTemporaryTemplate,
   DadosArquivoTemporario,
-} from "@/tests/mocks/subdomains/templates/templates/createTemporaryTemplate";
+} from "@/tests/mocks/subdomains/geracao_templates/templates/createTemporaryTemplate";
 import { rm } from "node:fs/promises";
 
 describe("CaptarDocumentosAdapter", () => {

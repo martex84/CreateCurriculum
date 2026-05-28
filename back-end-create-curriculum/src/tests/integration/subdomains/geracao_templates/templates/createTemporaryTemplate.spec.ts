@@ -1,4 +1,4 @@
-import { CreateTemporaryTemplate } from "@/tests/mocks/subdomains/templates/templates/createTemporaryTemplate";
+import { CreateTemporaryTemplate } from "@/tests/mocks/subdomains/geracao_templates/templates/createTemporaryTemplate";
 import path from "node:path";
 import { mkdir, rm, writeFile } from "node:fs/promises";
 

@@ -8,7 +8,7 @@ import { CaptarDocumentosAdapter } from "@geracao_templates/adapters/captarDocum
 import { ITemplatesServicePort } from "@geracao_templates/ports/iTemplatesServicePort";
 import { GenerationError } from "@/shared/errors/generation-error";
 import { mensagemError } from "@geracao_templates/useCases/criarTemplate.error";
-import { mockDadosTemplate } from "@/tests/mocks/subdomains/templates/domain/entity/template.mock";
+import { mockDadosTemplate } from "@/tests/mocks/subdomains/geracao_templates/domain/entity/template.mock";
 import { getTemplatePath } from "@geracao_templates/adapters/config/templatesPath";
 
 describe("CriarTemplateUseCase", () => {

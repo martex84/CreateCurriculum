@@ -2,7 +2,7 @@ import { validarTemplateService } from "@geracao_templates/domain/services/valid
 import {
   DadosTemplate,
   mockDadosTemplate,
-} from "@/tests/mocks/subdomains/templates/domain/entity/template.mock";
+} from "@/tests/mocks/subdomains/geracao_templates/domain/entity/template.mock";
 
 describe("ValidarTemplate", () => {
   let objetoMock: () => DadosTemplate;
