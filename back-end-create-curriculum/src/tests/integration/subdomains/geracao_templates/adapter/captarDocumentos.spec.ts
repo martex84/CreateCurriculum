@@ -3,7 +3,7 @@ import { ITemplatesCaptarDocumentosAdapterPort } from "@geracao_templates/ports/
 import { mockDadosTemplate } from "@/tests/mocks/subdomains/geracao_templates/domain/entity/template.mock";
 import { getTemplatePath } from "@geracao_templates/adapters/config/templatesPath";
 
-describe("SelecionarTempalteHtml", () => {
+describe("CaptarDocumentosAdapter", () => {
   let captarDocumentoAdapter: ITemplatesCaptarDocumentosAdapterPort;
 
   beforeAll(() => {
