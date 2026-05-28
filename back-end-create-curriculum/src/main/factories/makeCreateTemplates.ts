@@ -3,6 +3,7 @@ import { CaptarDocumentosAdapter } from "@geracao_templates/adapters/captarDocum
 import { validarTemplateService } from "@geracao_templates/domain/services/validarTemplate.service";
 import { CriarTemplateUseCase } from "@geracao_templates/useCases/criarTemplate.useCase";
 import { getTemplatePath } from "@geracao_templates/adapters/config/templatesPath";
+import { CriacaoLogs } from "@/config/log";
 
 export interface MakeCreateTemplates {
   criarTemplateUseCase: CriarTemplateUseCase;
@@ -13,12 +14,15 @@ export const makeCreateTemplates = () => {
     getTemplatePath(),
   );
 
+  const criacaoLogs = new CriacaoLogs();
+
   const criarTemplateUseCase = new CriarTemplateUseCase(
     {
       validarTemplateService,
       incluirDadosTemplateHtmlService,
     },
     captarDadosTemplateHtmlAdapter,
+    criacaoLogs,
   );
 
   return {

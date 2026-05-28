@@ -1,35 +1,30 @@
-import fs from "fs";
+import { Logs } from "@/shared/types/logs";
+import { mkdir, appendFile } from "node:fs/promises";
+import path from "node:path";
 
-async function log(message: any) {//TODO: Aplicar tipagem para o parâmetro
-  const data = new Date();
+export class CriacaoLogs implements Logs {
+  async execution(message: string | object) {
+    const data = new Date();
 
-  const nomeArquivo = `log_${data.getDate()}_${data.getMonth() + 1}_${data.getFullYear()}.txt`;
+    const nomePastaLog = "log";
+    const nomeArquivo = `log_${data.getDate()}_${data.getMonth() + 1}_${data.getFullYear()}.txt`;
 
-  const nomePastaLog = "log";
+    const caminhoPasta = path.resolve(nomePastaLog);
+    const caminhoArquivo = path.join(caminhoPasta, nomeArquivo);
 
-  const caminhoArquivo = "./" + nomePastaLog + "/" + nomeArquivo;
+    const mensagemFormatada =
+      typeof message === "object" ? JSON.stringify(message) : message;
 
-  const mensagem =
-    `[${data.toLocaleDateString()} : ${data.toLocaleTimeString()}] --` +
-    `${message}--\n`;
+    const mensagem = `[${data.toISOString()}] -- ${mensagemFormatada} --\n`;
 
-  console.log(mensagem);
+    console.log(mensagem);
 
-  try {
-    if (!fs.existsSync("./" + nomePastaLog)) {
-      fs.mkdirSync("./" + nomePastaLog);
+    try {
+      await mkdir(caminhoPasta, { recursive: true });
+
+      await appendFile(caminhoArquivo, mensagem);
+    } catch (error) {
+      console.error("Falha ao tentar salvar o log localmente!", error);
     }
-
-    let valorArquivo = "";
-
-    if (fs.existsSync(caminhoArquivo)) {
-      valorArquivo = fs.readFileSync(caminhoArquivo).toString();
-    }
-
-    fs.writeFileSync(caminhoArquivo, valorArquivo + mensagem);
-  } catch (error) {
-    console.log("Falha ao tentar salvar o log localmente!");
   }
 }
-
-export default log;

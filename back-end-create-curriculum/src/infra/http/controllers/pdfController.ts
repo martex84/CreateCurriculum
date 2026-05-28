@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import log from "@/config/log";
+import { log } from "@/config/log";
 import { MakeCreateTemplates } from "@/main/factories/makeCreateTemplates";
 import { MakeCreateCurriculum } from "@/main/factories/makeCreateCurriculum";
 

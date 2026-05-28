@@ -1,4 +1,4 @@
-import log from "@/config/log";
+import { log } from "@/config/log";
 import { Curriculum } from "@criacao_curriculo/domain/entity/curriculum.entity";
 import { ICurriculumPort } from "@criacao_curriculo/ports/iCurriculumPort";
 import { DadosPagina, page } from "@criacao_curriculo/types/geracaoPdf";
