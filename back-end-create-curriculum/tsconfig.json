@@ -16,7 +16,8 @@
       "@routes/*": ["./src/routes/*"],
       "@geracao_templates/*": ["./src/subdomains/geracao_templates/*"],
       "@controllers/*": ["./src/infra/http/controllers/*"],
-      "@factories/*": ["./src/main/factories/*"]
+      "@factories/*": ["./src/main/factories/*"],
+      "@tests/*": ["./src/tests/*"]
     },
     "resolveJsonModule": true
   },
