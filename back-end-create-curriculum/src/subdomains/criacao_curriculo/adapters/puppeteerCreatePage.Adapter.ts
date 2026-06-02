@@ -1,6 +1,7 @@
 import { DadosPagina, page } from "@criacao_curriculo/types/geracaoPdf";
 import puppeteer from "puppeteer";
 import { erros } from "./puppeteerCreatePage.Error";
+import fs from "node:fs";
 
 interface PuppeteerCreatePageInterface {
   /**
@@ -52,18 +53,22 @@ export class PuppeteerCreatePage implements PuppeteerCreatePageInterface {
     return this.dadosPage.page;
   }
 
+  //TODO: Fazer com que verifique se o arquivo é valido e do tipo pdf, para que assim possar ser subreescrito
   async preencherArquivoPdf(localArquivo: string): Promise<boolean> {
     if (this.dadosPage) {
       try {
-        // this.log.execution("Gerando arquivo PDF");
+        if (
+          !localArquivo.includes(".pdf") ||
+          !localArquivo.length ||
+          !fs.existsSync(localArquivo)
+        )
+          throw new Error(erros.falhaLocalizarArquivoPdf);
 
         await this.dadosPage.page.pdf({
           format: "A4",
           path: localArquivo,
           printBackground: true,
         });
-
-        // this.log.execution("Arquivo gerado com sucesso!");
 
         return true;
       } catch (error) {
