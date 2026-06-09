@@ -53,7 +53,6 @@ export class PuppeteerCreatePage implements PuppeteerCreatePageInterface {
     return this.dadosPage.page;
   }
 
-  //TODO: Fazer com que verifique se o arquivo é valido e do tipo pdf, para que assim possar ser subreescrito
   async preencherArquivoPdf(localArquivo: string): Promise<boolean> {
     if (this.dadosPage) {
       try {
