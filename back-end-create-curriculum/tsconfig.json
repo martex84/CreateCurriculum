@@ -17,6 +17,7 @@
       "@geracao_templates/*": ["./src/subdomains/geracao_templates/*"],
       "@controllers/*": ["./src/infra/http/controllers/*"],
       "@factories/*": ["./src/main/factories/*"],
+      "@shared/*": ["./src/shared/*"],
       "@config/*": ["./src/config/*"],
       "@tests/*": ["./src/tests/*"]
     },
