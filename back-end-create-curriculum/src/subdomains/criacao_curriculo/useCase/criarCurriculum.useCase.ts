@@ -2,7 +2,11 @@ import { Logs } from "@/shared/types/logs";
 import { Curriculum } from "@criacao_curriculo/domain/entity/curriculum.entity";
 import { PuppeteerCreatePage } from "@criacao_curriculo/adapters/puppeteerCreatePage.Adapter";
 import { FsCreatePDF } from "@/subdomains/criacao_curriculo/adapters/fsCreatePdf.Adapter";
+import { CriarCurriculumError } from "@/shared/errors/criarCurriculum-error";
 
+export const errors = {
+  falhaGeracaoCuriculo: "Falha na geração do curriculum",
+};
 export class CriarCurriculumUseCase {
   constructor(
     private readonly puppeteerCreatePage: PuppeteerCreatePage,
@@ -54,8 +58,10 @@ export class CriarCurriculumUseCase {
       this.log.execution("Encerramento do browser");
 
       return curriculum;
-    } catch (error) {
-      throw new Error(`Falha na geração do curriculum: ${error}`);
+    } catch (error: any) {
+      throw new CriarCurriculumError(
+        errors.falhaGeracaoCuriculo + "\n" + error.message,
+      );
     } finally {
       await this.fsCreatePDF.apagarArquivo();
 
