@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
-import { log } from "@/config/log";
+import { CriacaoLogs } from "@/config/log";
 import { MakeCreateTemplates } from "@/main/factories/makeCreateTemplates";
 import { MakeCreateCurriculum } from "@/main/factories/makeCreateCurriculum";
+import { Curriculum } from "@/subdomains/criacao_curriculo/domain/entity/curriculum.entity";
 
 export class PdfController {
   constructor(
@@ -10,24 +11,43 @@ export class PdfController {
   ) {}
 
   async handle(request: Request, respose: Response) {
-    log("Captando dados do body");
+    let dadosResponse: Curriculum = {
+      arquivo: "",
+      error: {
+        isError: false,
+        messageError: "",
+      },
+    };
 
-    const body = request.body;
+    try {
+      const log = new CriacaoLogs();
 
-    if (!body) throw new Error("Falha ao localizar os dados do body");
+      log.execution("Captando dados do body");
 
-    const { criarTemplateUseCase } = this.makeCreateTemplates;
+      const body = request.body;
 
-    const templateHtml = await criarTemplateUseCase.execute(body);
+      if (!body) throw new Error("Falha ao localizar os dados do body");
 
-    if (templateHtml) {
-      const { criarCurriculumUseCase } = this.makeCrateCurriculum;
+      const { criarTemplateUseCase } = this.makeCreateTemplates;
 
-      const curriculo = await criarCurriculumUseCase.execution(templateHtml);
+      const templateHtml = await criarTemplateUseCase.execute(body);
 
-      if (curriculo) {
-        respose.send(curriculo);
-      } else respose.send("Falha na geração do curriculo");
-    } else respose.send("Falha na geração do template");
+      if (templateHtml) {
+        const { criarCurriculumUseCase } = this.makeCrateCurriculum;
+
+        const curriculo = await criarCurriculumUseCase.execution(templateHtml);
+
+        if (curriculo) {
+          dadosResponse = curriculo;
+        } else throw new Error("Falha na geração do curriculo");
+      } else throw new Error("Falha na geração do template");
+    } catch (error: any) {
+      dadosResponse.error = {
+        isError: true,
+        messageError: error.message,
+      };
+    } finally {
+      respose.send(dadosResponse);
+    }
   }
 }
