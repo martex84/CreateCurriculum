@@ -10,7 +10,7 @@
     "test:watch": "jest --watch",
     "test-unit": "jest tests/unit",
     "test-spec": "jest tests/integration",
-    "test-atual": "jest tests/integration/subdomains/geracao_templates/adapter/selecionarTemplateHtml.spec.ts --watch",
+    "test-atual": "jest src/tests/unit/subdomains/criacao_curriculo/useCase/criarCurriculum.test.ts --watch",
     "test:cov": "jest --coverage",
     "build": "tsx src/index.ts",
     "audit": "auditjs ossi"
