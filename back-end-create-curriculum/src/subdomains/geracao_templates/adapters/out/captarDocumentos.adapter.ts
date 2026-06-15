@@ -3,10 +3,10 @@ import { TiposTemplates } from "@geracao_templates/types/tiposTemplates";
 import { DadosTemplate } from "@geracao_templates/types/dadosTemplate";
 import { GenerationError } from "@/shared/errors/generation-error";
 import { erros } from "./captarDocumentos.error";
-import { ITemplatesCaptarDocumentosAdapterPort } from "@geracao_templates/ports/iTemplatesCaptarDocumentosAdapterPort";
+import { IGeracaoTemplatesCaptarDocumentosAdapterPort } from "@/subdomains/geracao_templates/ports/iGeracaoTemplatesCaptarDocumentosAdapterPort";
 import { valoresTiposTemplates } from "@geracao_templates/types/tiposTemplates";
 
-export class CaptarDocumentosAdapter implements ITemplatesCaptarDocumentosAdapterPort {
+export class CaptarDocumentosAdapter implements IGeracaoTemplatesCaptarDocumentosAdapterPort {
   constructor(private readonly localArquivo: string) {}
 
   async captarHtmlCSS(tipoTemplate: TiposTemplates) {

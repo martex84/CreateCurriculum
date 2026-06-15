@@ -1,4 +1,4 @@
-import { FsCreatePDF } from "@criacao_curriculo/adapters/fsCreatePdf.Adapter";
+import { FsCreatePDF } from "@criacao_curriculo/adapters/out/fsCreatePdf.Adapter";
 import path from "node:path";
 import { writeFile } from "node:fs/promises";
 

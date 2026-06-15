@@ -1,8 +1,8 @@
 import { CriarCurriculumUseCase } from "@/subdomains/criacao_curriculo/useCase/criarCurriculum.useCase";
 import path from "node:path";
 import { CriacaoLogs } from "@/config/log";
-import { FsCreatePDF } from "@criacao_curriculo/adapters/fsCreatePdf.Adapter";
-import { PuppeteerCreatePage } from "@criacao_curriculo/adapters/puppeteerCreatePage.Adapter";
+import { FsCreatePDF } from "@criacao_curriculo/adapters/out/fsCreatePdf.Adapter";
+import { PuppeteerCreatePage } from "@criacao_curriculo/adapters/out/puppeteerCreatePage.Adapter";
 
 describe("CriarCurriculumUseCase", () => {
   let criarCurriculumUseCase: CriarCurriculumUseCase;

@@ -7,11 +7,11 @@ import {
   TiposTemplates,
   valoresTiposTemplates,
 } from "@geracao_templates/types/tiposTemplates";
-import { ITemplatesServicePort } from "@geracao_templates/ports/iTemplatesServicePort";
+import { IGeracaoTemplatesServicePort } from "@/subdomains/geracao_templates/ports/iGeracaoTemplatesServicePort";
 import { ValidationError } from "@/shared/errors/validation-error";
 
 /** @inheritdoc */
-export const validarTemplateService: ITemplatesServicePort["validarTemplateService"] =
+export const validarTemplateService: IGeracaoTemplatesServicePort["validarTemplateService"] =
   (
     dados: any,
   ): dados is {

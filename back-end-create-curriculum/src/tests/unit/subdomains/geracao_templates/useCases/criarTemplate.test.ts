@@ -4,16 +4,16 @@ import { ValidationError } from "@/shared/errors/validation-error";
 import { validarTemplateService } from "@geracao_templates/domain/services/validarTemplate.service";
 import * as validarTemplateServiceFunction from "@geracao_templates/domain/services/validarTemplate.service";
 import { incluirDadosTemplateHtmlService } from "@geracao_templates/domain/services/incluirDadosTemplateHtml.service";
-import { CaptarDocumentosAdapter } from "@geracao_templates/adapters/captarDocumentos.adapter";
-import { ITemplatesServicePort } from "@geracao_templates/ports/iTemplatesServicePort";
+import { CaptarDocumentosAdapter } from "@/subdomains/geracao_templates/adapters/out/captarDocumentos.adapter";
+import { IGeracaoTemplatesServicePort } from "@/subdomains/geracao_templates/ports/iGeracaoTemplatesServicePort";
 import { GenerationError } from "@/shared/errors/generation-error";
 import { mensagemError } from "@geracao_templates/useCases/criarTemplate.error";
 import { mockDadosTemplate } from "@/tests/mocks/subdomains/geracao_templates/domain/entity/template.mock";
-import { getTemplatePath } from "@geracao_templates/adapters/config/templatesPath";
+import { getTemplatePath } from "@geracao_templates/adapters/out/config/templatesPath";
 import { CriacaoLogs } from "@/config/log";
 
 describe("CriarTemplateUseCase", () => {
-  let iTemplatesServicePort: ITemplatesServicePort;
+  let iTemplatesServicePort: IGeracaoTemplatesServicePort;
   let criarTemplateUseCase: CriarTemplateUseCase;
   let captarDocumentosAdapter: CaptarDocumentosAdapter;
 

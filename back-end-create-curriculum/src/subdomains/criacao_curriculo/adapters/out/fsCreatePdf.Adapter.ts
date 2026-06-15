@@ -1,6 +1,6 @@
 import path from "node:path";
 import { mkdir, readFile, unlink, writeFile, rm } from "node:fs/promises";
-import { errors } from "./fsCreatePdf.Error";
+import { errors } from "../out/fsCreatePdf.Error";
 import { validarPath } from "@/shared/infra/validation/validarPath";
 import { CreatePdfError } from "@/shared/errors/createPdf-error";
 

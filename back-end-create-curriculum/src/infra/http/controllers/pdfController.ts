@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
 import { CriacaoLogs } from "@/config/log";
-import { MakeCreateTemplates } from "@/main/factories/makeCreateTemplates";
-import { MakeCreateCurriculum } from "@/main/factories/makeCreateCurriculum";
+import { IGeracaoTemplatesFactory } from "@/subdomains/geracao_templates/ports/IGeracaoTemplatesFactory";
+import { ICurriculumFactory } from "@/subdomains/criacao_curriculo/ports/ICurriculumFactory";
 import { Curriculum } from "@/subdomains/criacao_curriculo/domain/entity/curriculum.entity";
 
 export class PdfController {
   constructor(
-    private readonly makeCreateTemplates: MakeCreateTemplates,
-    private readonly makeCrateCurriculum: MakeCreateCurriculum,
+    private readonly makeCreateTemplates: IGeracaoTemplatesFactory,
+    private readonly makeCrateCurriculum: ICurriculumFactory,
   ) {}
 
   async handle(request: Request, respose: Response) {

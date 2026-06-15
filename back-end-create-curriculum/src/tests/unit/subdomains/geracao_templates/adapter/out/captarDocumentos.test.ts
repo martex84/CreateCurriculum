@@ -1,9 +1,9 @@
 import { GenerationError } from "@/shared/errors/generation-error";
-import { erros } from "@geracao_templates/adapters/captarDocumentos.error";
-import { CaptarDocumentosAdapter } from "@geracao_templates/adapters/captarDocumentos.adapter";
+import { erros } from "@/subdomains/geracao_templates/adapters/out/captarDocumentos.error";
+import { CaptarDocumentosAdapter } from "@/subdomains/geracao_templates/adapters/out/captarDocumentos.adapter";
 import { TiposTemplates } from "@geracao_templates/types/tiposTemplates";
-import { ITemplatesCaptarDocumentosAdapterPort } from "@geracao_templates/ports/iTemplatesCaptarDocumentosAdapterPort";
-import { getTemplatePath } from "@geracao_templates/adapters/config/templatesPath";
+import { IGeracaoTemplatesCaptarDocumentosAdapterPort } from "@/subdomains/geracao_templates/ports/iGeracaoTemplatesCaptarDocumentosAdapterPort";
+import { getTemplatePath } from "@geracao_templates/adapters/out/config/templatesPath";
 import {
   CreateTemporaryTemplate,
   DadosArquivoTemporario,
@@ -17,7 +17,7 @@ describe("CaptarDocumentosAdapter", () => {
   }
 
   let tipoTemplate: TiposTemplates;
-  let captarDocumentosAdapter: ITemplatesCaptarDocumentosAdapterPort;
+  let captarDocumentosAdapter: IGeracaoTemplatesCaptarDocumentosAdapterPort;
   let createTemporaryTemplate: CreateTemporaryTemplate;
   let dadosArquivoTemporario: DadosArquivoTemporario;
   let pastasCriadas: string[] = [];

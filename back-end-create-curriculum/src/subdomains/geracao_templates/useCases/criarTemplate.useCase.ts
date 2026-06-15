@@ -1,15 +1,15 @@
 import { Templates } from "@geracao_templates/domain/entity/templates.entity";
 import { TiposTemplates } from "@geracao_templates/types/tiposTemplates";
 import { mensagemError } from "@geracao_templates/useCases/criarTemplate.error";
-import { ITemplatesServicePort } from "@geracao_templates/ports/iTemplatesServicePort";
+import { IGeracaoTemplatesServicePort } from "@/subdomains/geracao_templates/ports/iGeracaoTemplatesServicePort";
 import { AppError } from "@/shared/errors/app-error";
-import { ITemplatesCaptarDocumentosAdapterPort } from "@geracao_templates/ports/iTemplatesCaptarDocumentosAdapterPort";
+import { IGeracaoTemplatesCaptarDocumentosAdapterPort } from "@/subdomains/geracao_templates/ports/iGeracaoTemplatesCaptarDocumentosAdapterPort";
 import { Logs } from "@/shared/types/logs";
 
 export class CriarTemplateUseCase {
   constructor(
-    private readonly iTemplatesServicePort: ITemplatesServicePort,
-    private readonly iTemplatesCaptarDocumentosAdapterPort: ITemplatesCaptarDocumentosAdapterPort,
+    private readonly iTemplatesServicePort: IGeracaoTemplatesServicePort,
+    private readonly iTemplatesCaptarDocumentosAdapterPort: IGeracaoTemplatesCaptarDocumentosAdapterPort,
     private readonly log: Logs,
   ) {}
 

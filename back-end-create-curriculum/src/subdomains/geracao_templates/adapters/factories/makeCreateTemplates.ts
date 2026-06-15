@@ -1,15 +1,12 @@
 import { incluirDadosTemplateHtmlService } from "@geracao_templates/domain/services/incluirDadosTemplateHtml.service";
-import { CaptarDocumentosAdapter } from "@geracao_templates/adapters/captarDocumentos.adapter";
+import { CaptarDocumentosAdapter } from "@/subdomains/geracao_templates/adapters/out/captarDocumentos.adapter";
 import { validarTemplateService } from "@geracao_templates/domain/services/validarTemplate.service";
 import { CriarTemplateUseCase } from "@geracao_templates/useCases/criarTemplate.useCase";
-import { getTemplatePath } from "@geracao_templates/adapters/config/templatesPath";
+import { getTemplatePath } from "@geracao_templates/adapters/out/config/templatesPath";
 import { CriacaoLogs } from "@/config/log";
+import { IGeracaoTemplatesFactory } from "@/subdomains/geracao_templates/ports/IGeracaoTemplatesFactory";
 
-export interface MakeCreateTemplates {
-  criarTemplateUseCase: CriarTemplateUseCase;
-}
-
-export const makeCreateTemplates = () => {
+export const makeCreateTemplates = (): IGeracaoTemplatesFactory => {
   const captarDadosTemplateHtmlAdapter = new CaptarDocumentosAdapter(
     getTemplatePath(),
   );

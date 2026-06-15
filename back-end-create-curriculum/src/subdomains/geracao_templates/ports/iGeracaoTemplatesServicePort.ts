@@ -2,7 +2,7 @@ import { TiposTemplates } from "@geracao_templates/types/tiposTemplates";
 import { Templates } from "@geracao_templates/domain/entity/templates.entity";
 import { DadosTemplate } from "@geracao_templates/types/dadosTemplate";
 
-export interface ITemplatesServicePort {
+export interface IGeracaoTemplatesServicePort {
   /**
    * Contrato para validação de estrutura de dados de template.
    * Verifica se o objeto recebido possui todos os campos obrigatórios e tipos corretos.

@@ -1,6 +1,6 @@
 import { CreatePdfError } from "@/shared/errors/createPdf-error";
-import { FsCreatePDF } from "@criacao_curriculo/adapters/fsCreatePdf.Adapter";
-import { errors } from "@criacao_curriculo/adapters/fsCreatePdf.Error";
+import { FsCreatePDF } from "@/subdomains/criacao_curriculo/adapters/out/fsCreatePdf.Adapter";
+import { errors } from "@/subdomains/criacao_curriculo/adapters/out/fsCreatePdf.Error";
 import { errors as errorsValidacao } from "@shared/infra/validation/validarPath";
 import path from "node:path";
 

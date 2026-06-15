@@ -1,9 +1,9 @@
 import { incluirDadosTemplateHtmlService } from "@geracao_templates/domain/services/incluirDadosTemplateHtml.service";
-import { CaptarDocumentosAdapter } from "@geracao_templates/adapters/captarDocumentos.adapter";
+import { CaptarDocumentosAdapter } from "@/subdomains/geracao_templates/adapters/out/captarDocumentos.adapter";
 import { validarTemplateService } from "@geracao_templates/domain/services/validarTemplate.service";
 import { CriarTemplateUseCase } from "@geracao_templates/useCases/criarTemplate.useCase";
 import { mockDadosTemplate } from "@/tests/mocks/subdomains/geracao_templates/domain/entity/template.mock";
-import { getTemplatePath } from "@geracao_templates/adapters/config/templatesPath";
+import { getTemplatePath } from "@geracao_templates/adapters/out/config/templatesPath";
 import { CriacaoLogs } from "@/config/log";
 
 describe("CriarTemplateUseCase", () => {

@@ -1,4 +1,4 @@
-import { PuppeteerCreatePage } from "@criacao_curriculo/adapters/puppeteerCreatePage.Adapter";
+import { PuppeteerCreatePage } from "@criacao_curriculo/adapters/out/puppeteerCreatePage.Adapter";
 import path from "node:path";
 import { mkdir, writeFile, rm } from "node:fs/promises";
 

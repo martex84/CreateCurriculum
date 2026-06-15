@@ -1,5 +1,5 @@
-import { PuppeteerCreatePage } from "@criacao_curriculo/adapters/puppeteerCreatePage.Adapter";
-import { erros } from "@criacao_curriculo/adapters/puppeteerCreatePage.Error";
+import { PuppeteerCreatePage } from "@criacao_curriculo/adapters/out/puppeteerCreatePage.Adapter";
+import { erros } from "@criacao_curriculo/adapters/out/puppeteerCreatePage.Error";
 
 describe("PuppeteerCreatePageAdapter", () => {
   let puppeteerCreatePage: PuppeteerCreatePage;

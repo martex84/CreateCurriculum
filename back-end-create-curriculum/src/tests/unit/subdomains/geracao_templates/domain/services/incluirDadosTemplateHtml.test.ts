@@ -4,14 +4,14 @@ import {
   Templates,
 } from "@geracao_templates/domain/entity/templates.entity";
 import { erros } from "@geracao_templates/domain/services/incluirDadosTemplateHtml.error";
-import { CaptarDocumentosAdapter } from "@geracao_templates/adapters/captarDocumentos.adapter";
+import { CaptarDocumentosAdapter } from "@/subdomains/geracao_templates/adapters/out/captarDocumentos.adapter";
 import { DadosTemplate } from "@geracao_templates/types/dadosTemplate";
 import {
   DadosTemplate as DadosUsuarioTipo,
   mockDadosTemplate,
 } from "@/tests/mocks/subdomains/geracao_templates/domain/entity/template.mock";
 import { incluirDadosTemplateHtmlService } from "@geracao_templates/domain/services/incluirDadosTemplateHtml.service";
-import { getTemplatePath } from "@geracao_templates/adapters/config/templatesPath";
+import { getTemplatePath } from "@geracao_templates/adapters/out/config/templatesPath";
 
 describe("IncluirDadosTemplateHtml", () => {
   let dadosTemplate: DadosUsuarioTipo;

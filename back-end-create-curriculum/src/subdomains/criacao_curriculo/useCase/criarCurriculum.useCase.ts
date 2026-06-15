@@ -1,7 +1,7 @@
 import { Logs } from "@/shared/types/logs";
 import { Curriculum } from "@criacao_curriculo/domain/entity/curriculum.entity";
-import { PuppeteerCreatePage } from "@criacao_curriculo/adapters/puppeteerCreatePage.Adapter";
-import { FsCreatePDF } from "@/subdomains/criacao_curriculo/adapters/fsCreatePdf.Adapter";
+import { PuppeteerCreatePage } from "@/subdomains/criacao_curriculo/adapters/out/puppeteerCreatePage.Adapter";
+import { FsCreatePDF } from "@/subdomains/criacao_curriculo/adapters/out/fsCreatePdf.Adapter";
 import { CriarCurriculumError } from "@/shared/errors/criarCurriculum-error";
 
 export const errors = {
