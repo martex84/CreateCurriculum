@@ -21,6 +21,8 @@ describe("CriarCurriculumUseCase", () => {
     puppeteerCreatePage = new PuppeteerCreatePage();
     const log = new CriacaoLogs();
 
+    jest.spyOn(log, "execution").mockResolvedValue();
+
     criarCurriculumUseCase = new CriarCurriculumUseCase(
       puppeteerCreatePage,
       fsCreatePDF,

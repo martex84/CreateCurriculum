@@ -90,7 +90,7 @@ export class PuppeteerCreatePage implements PuppeteerCreatePageInterface {
         throw new Error(erros.falhaFechamentoPagina + "/n" + error);
       }
     } else {
-      console.error(erros.falhaLocalizacaoDadosPagina);
+      console.warn(erros.falhaLocalizacaoDadosPagina);
     }
   }
 }
