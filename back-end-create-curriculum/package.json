@@ -10,7 +10,7 @@
     "test:watch": "jest --watch",
     "test-unit": "jest tests/unit",
     "test-spec": "jest tests/integration",
-    "test-atual": "jest src/tests/unit/subdomains/criacao_curriculo/useCase/criarCurriculum.test.ts --watch",
+    "test-atual": "jest src/tests/unit/shared/infra/config/importarInformacoes.test.ts --watch",
     "test:cov": "jest --coverage",
     "build": "tsx src/index.ts",
     "audit": "auditjs ossi"
@@ -30,6 +30,7 @@
     "@types/express": "^5.0.6",
     "@types/jest": "^30.0.0",
     "@types/node": "^25.4.0",
+    "auditjs": "^5.0.1",
     "jest": "^30.3.0",
     "ts-jest": "^29.4.6",
     "ts-node-dev": "^2.0.0",
@@ -37,9 +38,10 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "auditjs": "^4.0.45",
     "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
     "express": "^4.19.2",
+    "helmet": "^8.2.0",
     "puppeteer": "^22.10.0"
   }
 }
