@@ -3,7 +3,7 @@ import path from "node:path";
 import { validarItem } from "@/shared/infra/validation/validarItemEnv";
 import { ValidationEnvError } from "@/shared/errors/validationEnv-error";
 
-interface InformacoesEnv {
+export interface InformacoesEnv {
   PERMITION_SITES: string;
 }
 
@@ -13,7 +13,7 @@ export const erros = {
 
 let informacoesEnv: InformacoesEnv | undefined;
 
-export const importarInformacoes = (): InformacoesEnv => {
+export const importarInformacoesEnv = (): InformacoesEnv => {
   configurarDotenv();
 
   const { PERMITION_SITES } = process.env;

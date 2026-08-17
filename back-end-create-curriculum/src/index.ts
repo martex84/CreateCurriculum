@@ -1,6 +1,6 @@
-import Aplication from "./config/app";
-import path from "node:path";
+import Server from "./main/server";
+import { CriacaoLogs } from "@config/log";
 
 console.log("\n \n \n \n \n \n");
 
-Aplication.main();
+Server.main(new CriacaoLogs());

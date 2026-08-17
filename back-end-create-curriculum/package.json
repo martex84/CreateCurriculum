@@ -10,7 +10,7 @@
     "test:watch": "jest --watch",
     "test-unit": "jest tests/unit",
     "test-spec": "jest tests/integration",
-    "test-atual": "jest src/tests/unit/shared/infra/config/importarInformacoes.test.ts --watch",
+    "test-atual": "jest src/tests/unit/shared/infra/http/middlewares/corsConfiguration.test.ts --watch",
     "test:cov": "jest --coverage",
     "build": "tsx src/index.ts",
     "audit": "auditjs ossi"
