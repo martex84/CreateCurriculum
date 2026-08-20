@@ -5,6 +5,7 @@ import { ValidationEnvError } from "@/shared/errors/validationEnv-error";
 
 export interface InformacoesEnv {
   PERMITION_SITES: string;
+  NODE_ENV: string;
 }
 
 export const erros = {
@@ -16,13 +17,18 @@ let informacoesEnv: InformacoesEnv | undefined;
 export const importarInformacoesEnv = (): InformacoesEnv => {
   configurarDotenv();
 
-  const { PERMITION_SITES } = process.env;
+  const { PERMITION_SITES, NODE_ENV } = process.env;
 
   if (informacoesEnv) return informacoesEnv;
 
   informacoesEnv = Object.freeze({
     PERMITION_SITES: validarItem({
       item: PERMITION_SITES,
+      tipoDesejado: "string",
+      mensagemErro: "Não foi possível localizar o item PERMITION_SITES!",
+    }),
+    NODE_ENV: validarItem({
+      item: NODE_ENV,
       tipoDesejado: "string",
       mensagemErro: "Não foi possível localizar o item PERMITION_SITES!",
     }),

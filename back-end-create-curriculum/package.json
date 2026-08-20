@@ -5,14 +5,14 @@
   "main": "src/index.ts",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test-unit": "jest tests/unit",
-    "test-spec": "jest tests/integration",
-    "test-atual": "jest src/tests/unit/shared/infra/http/middlewares/corsConfiguration.test.ts --watch",
-    "test:cov": "jest --coverage",
-    "build": "tsx src/index.ts",
+    "dev": "NODE_ENV=DEV tsx watch src/index.ts",
+    "test": "jest NODE_ENV=TEST",
+    "test:watch": "jest NODE_ENV=TEST --watch",
+    "test-unit": "jest NODE_ENV=TEST tests/unit",
+    "test-spec": "jest NODE_ENV=TEST tests/integration",
+    "test-atual": "jest NODE_ENV=TEST src/tests/integration/subdomains/geracao_log/useCase/geracaoLogUseCase.spec.ts --watch",
+    "test:cov": "jest NODE_ENV=TEST --coverage",
+    "build": "tsx NODE_ENV=producao src/index.ts",
     "audit": "auditjs ossi"
   },
   "repository": {
@@ -31,6 +31,7 @@
     "@types/jest": "^30.0.0",
     "@types/node": "^25.4.0",
     "auditjs": "^5.0.1",
+    "cross-env": "^10.1.0",
     "jest": "^30.3.0",
     "ts-jest": "^29.4.6",
     "ts-node-dev": "^2.0.0",
@@ -42,6 +43,6 @@
     "dotenv": "^17.4.2",
     "express": "^4.19.2",
     "helmet": "^8.2.0",
-    "puppeteer": "^22.10.0"
+    "puppeteer": "^25.8.0"
   }
 }
