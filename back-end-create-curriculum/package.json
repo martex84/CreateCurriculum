@@ -7,11 +7,11 @@
   "scripts": {
     "dev": "NODE_ENV=DEV tsx watch src/index.ts",
     "test": "jest NODE_ENV=TEST",
-    "test:watch": "jest NODE_ENV=TEST --watch",
-    "test-unit": "jest NODE_ENV=TEST tests/unit",
-    "test-spec": "jest NODE_ENV=TEST tests/integration",
-    "test-atual": "jest NODE_ENV=TEST src/tests/integration/subdomains/geracao_log/useCase/geracaoLogUseCase.spec.ts --watch",
-    "test:cov": "jest NODE_ENV=TEST --coverage",
+    "test:watch": "jest --watch NODE_ENV=TEST",
+    "test-unit": "jest tests/unit NODE_ENV=TEST",
+    "test-spec": "jest tests/integration NODE_ENV=TEST",
+    "test-atual": "jest src/tests/integration/subdomains/geracao_log/useCase/geracaoLogUseCase.spec.ts --watch NODE_ENV=TEST",
+    "test:cov": "jest --coverage NODE_ENV=TEST",
     "build": "tsx NODE_ENV=producao src/index.ts",
     "audit": "auditjs ossi"
   },
