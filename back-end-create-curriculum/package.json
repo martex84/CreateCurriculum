@@ -6,13 +6,12 @@
   "type": "module",
   "scripts": {
     "dev": "NODE_ENV=DEV tsx watch src/index.ts",
-    "test": "jest NODE_ENV=TEST",
-    "test:watch": "jest --watch NODE_ENV=TEST",
-    "test-unit": "jest tests/unit NODE_ENV=TEST",
-    "test-spec": "jest tests/integration NODE_ENV=TEST",
-    "test-atual": "jest src/tests/integration/subdomains/geracao_log/useCase/geracaoLogUseCase.spec.ts --watch NODE_ENV=TEST",
-    "test:cov": "jest --coverage NODE_ENV=TEST",
-    "build": "tsx NODE_ENV=producao src/index.ts",
+    "test": "cross-env NODE_ENV=TEST NODE_OPTIONS=--experimental-vm-modules jest",
+    "test:watch": "npm test -- --watch",
+    "test:unit": "npm test -- src/tests/unit",
+    "test:spec": "npm test -- src/tests/integration",
+    "test:cov": "npm test -- --coverage",
+    "build": "cross-env NODE_ENV=producao tsx src/index.ts",
     "audit": "auditjs ossi"
   },
   "repository": {
@@ -29,7 +28,7 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/jest": "^30.0.0",
-    "@types/node": "^25.4.0",
+    "@types/node": "^25.9.5",
     "auditjs": "^5.0.1",
     "cross-env": "^10.1.0",
     "jest": "^30.3.0",
