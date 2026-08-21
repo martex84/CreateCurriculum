@@ -9,7 +9,7 @@ export const error = {
 };
 
 export const corsMiddleware = (
-  informacoesEnv: InformacoesEnv,
+  informacoesEnv: Partial<InformacoesEnv>,
 ): RequestHandler => {
   let { PERMITION_SITES: permitionSites } = informacoesEnv;
 

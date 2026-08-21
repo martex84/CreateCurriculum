@@ -13,7 +13,7 @@ interface ErroOrigin {
 }
 
 describe("corsMiddleware", () => {
-  let informacoesEnv: InformacoesEnv;
+  let informacoesEnv: Partial<InformacoesEnv>;
   let mockReq: Partial<Request>;
   let mockRes: Partial<Response>;
   let mockNext: NextFunction;
@@ -73,6 +73,9 @@ describe("corsMiddleware", () => {
 
   test("Verifica se ocorre erro quando o origin é diferente do esperado", () => {
     const verificacao = corsMiddleware(informacoesEnv);
+
+    if (!informacoesEnv?.PERMITION_SITES)
+      throw new Error("Falha na captura do env!");
 
     mockReq.headers = { origin: informacoesEnv.PERMITION_SITES + 1 };
 
