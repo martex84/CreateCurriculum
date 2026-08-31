@@ -13,8 +13,9 @@
     "paths": {
       "@/*": ["./src/*"],
       "@criacao_curriculo/*": ["./src/subdomains/criacao_curriculo/*"],
-      "@routes/*": ["./src/routes/*"],
       "@geracao_templates/*": ["./src/subdomains/geracao_templates/*"],
+      "@geracao_log/*": ["./src/subdomains/geracao_log/*"],
+      "@routes/*": ["./src/routes/*"],
       "@controllers/*": ["./src/infra/http/controllers/*"],
       "@factories/*": ["./src/main/factories/*"],
       "@shared/*": ["./src/shared/*"],
