@@ -1,5 +1,5 @@
 import { GeracaoLogUseCase } from "@geracao_log/useCase/geracaoLogUseCase";
-import { GestaoArquivosLog } from "@geracao_log/adapters/GestaoArquivosLog";
+import { GestaoArquivosLog } from "@/subdomains/geracao_log/adapters/out/GestaoArquivosLog";
 import { IGestacaoArquivosLog } from "@geracao_log/ports/IGestaoArquivosLog";
 
 describe("GeracaoLogUseCase", () => {

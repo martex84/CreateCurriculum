@@ -1,6 +1,6 @@
 import Server from "./main/server";
-import { CriacaoLogs } from "@config/log";
+import { makeGeracaoLogUseCase } from "@geracao_log/";
 
 console.log("\n \n \n \n \n \n");
 
-Server.main(new CriacaoLogs());
+Server.main(makeGeracaoLogUseCase());

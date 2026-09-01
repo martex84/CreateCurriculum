@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { CriacaoLogs } from "@/config/log";
 import { IGeracaoTemplatesFactory } from "@/subdomains/geracao_templates/ports/IGeracaoTemplatesFactory";
 import { ICurriculumFactory } from "@/subdomains/criacao_curriculo/ports/ICurriculumFactory";
 import { Curriculum } from "@/subdomains/criacao_curriculo/domain/entity/curriculum.entity";
+import { makeGeracaoLogUseCase } from "@geracao_log/";
 
 export class PdfController {
   constructor(
@@ -20,9 +20,9 @@ export class PdfController {
     };
 
     try {
-      const log = new CriacaoLogs();
+      const log = makeGeracaoLogUseCase();
 
-      log.execution("Captando dados do body");
+      await log.execution("Captando dados do body");
 
       const body = request.body;
 

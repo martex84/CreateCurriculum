@@ -5,9 +5,10 @@ import {
 } from "@criacao_curriculo/useCase/criarCurriculum.useCase";
 import { FsCreatePDF } from "@/subdomains/criacao_curriculo/adapters/out/fsCreatePdf.Adapter";
 import { PuppeteerCreatePage } from "@/subdomains/criacao_curriculo/adapters/out/puppeteerCreatePage.Adapter";
-import { CriacaoLogs } from "@config/log";
 import path from "node:path";
 import { CriarCurriculumError } from "@/shared/errors/criarCurriculum-error";
+import { GestaoArquivosLog } from "@/subdomains/geracao_log/adapters/out/GestaoArquivosLog";
+import { GeracaoLogUseCase } from "@/subdomains/geracao_log/useCase/geracaoLogUseCase";
 
 describe("CriarCurriculumUseCase", () => {
   let criarCurriculumUseCase: CriarCurriculumUseCase;
@@ -19,14 +20,17 @@ describe("CriarCurriculumUseCase", () => {
   beforeEach(() => {
     fsCreatePDF = new FsCreatePDF(localPasta);
     puppeteerCreatePage = new PuppeteerCreatePage();
-    const log = new CriacaoLogs();
 
-    jest.spyOn(log, "execution").mockResolvedValue();
+    const gestaoArquivosLog = new GestaoArquivosLog();
+
+    const geracaoLogUseCase = new GeracaoLogUseCase(gestaoArquivosLog);
+
+    jest.spyOn(geracaoLogUseCase, "execution").mockResolvedValue();
 
     criarCurriculumUseCase = new CriarCurriculumUseCase(
       puppeteerCreatePage,
       fsCreatePDF,
-      log,
+      geracaoLogUseCase,
     );
 
     jest.resetAllMocks();

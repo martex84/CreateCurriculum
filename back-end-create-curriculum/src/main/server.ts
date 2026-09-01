@@ -4,11 +4,12 @@ import helmet from "helmet";
 import { importarInformacoesEnv } from "@/shared/infra/config/importarInformacoesEnv";
 import { expressJson, port } from "@shared/infra/config/app";
 import { corsMiddleware } from "@/shared/infra/http/middlewares/corsConfiguration";
-import { Logs } from "@/shared/types/logs";
+import { IGeracaoLogUseCase } from "@geracao_log/";
 
 class Server {
-  static async main(log: Logs) {
-    const executionLog = log.execution;
+  static async main(iGeracaoLogUseCase: IGeracaoLogUseCase) {
+    const executionLog = async (mensagem: string) =>
+      await iGeracaoLogUseCase.execution(mensagem);
 
     executionLog("Initial Application");
 

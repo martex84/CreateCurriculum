@@ -1,7 +1,7 @@
 import {
   GestaoArquivosLog,
   errors,
-} from "@geracao_log/adapters/GestaoArquivosLog";
+} from "@/subdomains/geracao_log/adapters/out/GestaoArquivosLog";
 import { IGestacaoArquivosLog } from "@geracao_log/ports/IGestaoArquivosLog";
 import { readFile, rm } from "node:fs/promises";
 import path from "node:path";

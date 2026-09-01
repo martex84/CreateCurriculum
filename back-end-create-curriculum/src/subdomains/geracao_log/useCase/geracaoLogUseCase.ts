@@ -1,8 +1,6 @@
 import { LogError } from "@/shared/errors/log-error";
 import { IGeracaoLogUseCase } from "@/subdomains/geracao_log/ports/IGeracaoLogUseCase";
 import { IGestacaoArquivosLog } from "@/subdomains/geracao_log/ports/IGestaoArquivosLog";
-import { mkdir, appendFile } from "node:fs/promises";
-import path from "node:path";
 
 export const erros = {
   FALHA_GERAR_LOG: "Falha na geração local do log!",

@@ -4,31 +4,34 @@ import { mensagemError } from "@geracao_templates/useCases/criarTemplate.error";
 import { IGeracaoTemplatesServicePort } from "@/subdomains/geracao_templates/ports/iGeracaoTemplatesServicePort";
 import { AppError } from "@/shared/errors/app-error";
 import { IGeracaoTemplatesCaptarDocumentosAdapterPort } from "@/subdomains/geracao_templates/ports/iGeracaoTemplatesCaptarDocumentosAdapterPort";
-import { Logs } from "@/shared/types/logs";
+import { IGeracaoLogUseCase } from "@/subdomains/geracao_log";
 
 export class CriarTemplateUseCase {
   constructor(
     private readonly iTemplatesServicePort: IGeracaoTemplatesServicePort,
     private readonly iTemplatesCaptarDocumentosAdapterPort: IGeracaoTemplatesCaptarDocumentosAdapterPort,
-    private readonly log: Logs,
+    private readonly iGeracaoLogUseCase: IGeracaoLogUseCase,
   ) {}
 
   async execute(dados: any): Promise<string | undefined> {
     try {
-      this.log.execution("Validando dados");
+      const log = async (mensagem: string | object) =>
+        await this.iGeracaoLogUseCase.execution(mensagem);
+
+      log("Validando dados");
       this.iTemplatesServicePort.validarTemplateService(dados);
 
-      this.log.execution("Criando variáveis com base no body");
+      log("Criando variáveis com base no body");
       const template: Templates = dados.template;
       const tipoTemplates: TiposTemplates = dados.tipo;
 
-      this.log.execution("Captado dados HTML e CSS!");
+      log("Captado dados HTML e CSS!");
       let dadosArquivoHtmlBase =
         await this.iTemplatesCaptarDocumentosAdapterPort.captarHtmlCSS(
           tipoTemplates,
         );
 
-      this.log.execution("Gerando HTML Customizado");
+      log("Gerando HTML Customizado");
 
       const htmlCustomizado =
         this.iTemplatesServicePort.incluirDadosTemplateHtmlService(

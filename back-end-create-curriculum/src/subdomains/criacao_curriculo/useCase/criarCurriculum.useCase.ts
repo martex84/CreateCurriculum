@@ -1,8 +1,8 @@
-import { Logs } from "@/shared/types/logs";
 import { Curriculum } from "@criacao_curriculo/domain/entity/curriculum.entity";
 import { PuppeteerCreatePage } from "@/subdomains/criacao_curriculo/adapters/out/puppeteerCreatePage.Adapter";
 import { FsCreatePDF } from "@/subdomains/criacao_curriculo/adapters/out/fsCreatePdf.Adapter";
 import { CriarCurriculumError } from "@/shared/errors/criarCurriculum-error";
+import { IGeracaoLogUseCase } from "@/subdomains/geracao_log";
 
 export const errors = {
   falhaGeracaoCuriculo: "Falha na geração do curriculum",
@@ -11,7 +11,7 @@ export class CriarCurriculumUseCase {
   constructor(
     private readonly puppeteerCreatePage: PuppeteerCreatePage,
     private readonly fsCreatePDF: FsCreatePDF,
-    private readonly log: Logs,
+    private readonly iGeracaoLogUseCase: IGeracaoLogUseCase,
   ) {}
 
   async execution(html: string): Promise<Curriculum> {
@@ -24,38 +24,41 @@ export class CriarCurriculumUseCase {
     };
 
     try {
-      this.log.execution("Inicio da criação de logs");
+      const log = async (mensagem: string | object) =>
+        await this.iGeracaoLogUseCase.execution(mensagem);
 
-      this.log.execution("Criação da página");
+      log("Inicio da criação de logs");
+
+      log("Criação da página");
 
       //Realiza a criação da página e capta seus dados
       await this.puppeteerCreatePage.createPage(html);
 
-      this.log.execution("Criação do arquivo em branco");
+      log("Criação do arquivo em branco");
 
       const dadosArquivo = await this.fsCreatePDF.geracaoArquivo();
 
-      this.log.execution("Preenchimento do pdf");
+      log("Preenchimento do pdf");
 
       await this.puppeteerCreatePage.preencherArquivoPdf(
         dadosArquivo.localArquivo,
       );
 
-      this.log.execution("Pdf Preenchido com sucesso!");
+      log("Pdf Preenchido com sucesso!");
 
-      this.log.execution("Conversão do arquivo pdf para string");
+      log("Conversão do arquivo pdf para string");
 
       const dadosPdf = await this.fsCreatePDF.converterArquivoPdf();
 
       curriculum.arquivo = dadosPdf;
 
-      this.log.execution(
+      log(
         `O arquivo foi convertido com sucesso, trazendo ao total ${curriculum.arquivo.length} bytes!`,
       );
 
-      this.log.execution("Curriculo criado com sucesso!");
+      log("Curriculo criado com sucesso!");
 
-      this.log.execution("Encerramento do browser");
+      log("Encerramento do browser");
 
       return curriculum;
     } catch (error: any) {

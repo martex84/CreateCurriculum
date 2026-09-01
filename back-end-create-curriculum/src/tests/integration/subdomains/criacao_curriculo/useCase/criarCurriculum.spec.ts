@@ -1,22 +1,26 @@
 import { CriarCurriculumUseCase } from "@/subdomains/criacao_curriculo/useCase/criarCurriculum.useCase";
 import path from "node:path";
-import { CriacaoLogs } from "@/config/log";
 import { FsCreatePDF } from "@criacao_curriculo/adapters/out/fsCreatePdf.Adapter";
 import { PuppeteerCreatePage } from "@criacao_curriculo/adapters/out/puppeteerCreatePage.Adapter";
+import { GeracaoLogUseCase } from "@/subdomains/geracao_log/useCase/geracaoLogUseCase";
+import { GestaoArquivosLog } from "@/subdomains/geracao_log/adapters/out/GestaoArquivosLog";
 
 describe("CriarCurriculumUseCase", () => {
   let criarCurriculumUseCase: CriarCurriculumUseCase;
   let localArquivo = path.join(process.cwd(), "temp");
 
   beforeEach(async () => {
-    const log: CriacaoLogs = new CriacaoLogs();
+    const gestaoArquivosLog = new GestaoArquivosLog();
+
+    const geracaoLogUseCase = new GeracaoLogUseCase(gestaoArquivosLog);
+
     const puppeteerCreatePage: PuppeteerCreatePage = new PuppeteerCreatePage();
     const fsCreatePDF: FsCreatePDF = new FsCreatePDF(localArquivo);
 
     criarCurriculumUseCase = new CriarCurriculumUseCase(
       puppeteerCreatePage,
       fsCreatePDF,
-      log,
+      geracaoLogUseCase,
     );
   });
 
