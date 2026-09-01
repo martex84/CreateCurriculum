@@ -5,7 +5,7 @@
   "main": "src/index.ts",
   "type": "module",
   "scripts": {
-    "dev": "NODE_ENV=DEV tsx watch src/index.ts",
+    "dev": "cross-env NODE_ENV=DEV tsx watch src/index.ts",
     "test": "cross-env NODE_ENV=TEST NODE_OPTIONS=--experimental-vm-modules jest",
     "test:watch": "npm test -- --watch",
     "test:unit": "npm test -- src/tests/unit",
