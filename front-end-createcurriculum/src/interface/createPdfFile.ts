@@ -9,8 +9,8 @@ interface ObjectParameter {
   formacaoAcademica: string | undefined;
   resumoProfissional: string | undefined;
   idiomas: string | undefined;
-  compotencias: string | undefined;
-  historicoProfissinal: string | undefined;
+  competencias: string | undefined;
+  historicoProfissional: string | undefined;
   certificacoes: string | undefined;
 }
 
@@ -27,20 +27,20 @@ interface ObjectViewComponentes {
   formacaoAcademica: boolean | undefined;
   resumoProfissional: boolean | undefined;
   idiomas: boolean | undefined;
-  compotencias: boolean | undefined;
-  historicoProfissinal: boolean | undefined;
+  competencias: boolean | undefined;
+  historicoProfissional: boolean | undefined;
   certificacoes: boolean | undefined;
 }
 
 interface ValueInputAtual {
-  nomeInput: string | undefined,
-  valorAnteriorInput: string | undefined
+  nomeInput: string | undefined;
+  valorAnteriorInput: string | undefined;
 }
 
 interface ObjectValues {
-  objectParameter?: ObjectParameter,
-  objectViewComponentes?: ObjectViewComponentes,
-  ValueInputAtual?: ValueInputAtual
+  objectParameter?: ObjectParameter;
+  objectViewComponentes?: ObjectViewComponentes;
+  ValueInputAtual?: ValueInputAtual;
 }
 
 interface TiposFormatacao {
@@ -60,8 +60,8 @@ const templateObjectParameter: ObjectParameter = {
   formacaoAcademica: "",
   resumoProfissional: "",
   idiomas: "",
-  compotencias: "",
-  historicoProfissinal: "",
+  competencias: "",
+  historicoProfissional: "",
   certificacoes: "",
 };
 
@@ -76,20 +76,20 @@ const templateObjectViewComponentes: ObjectViewComponentes = {
   formacaoAcademica: false,
   resumoProfissional: false,
   idiomas: false,
-  compotencias: false,
-  historicoProfissinal: false,
+  competencias: false,
+  historicoProfissional: false,
   certificacoes: false,
 };
 
 const templateValueInputAtual: ValueInputAtual = {
   nomeInput: undefined,
-  valorAnteriorInput: undefined
-}
+  valorAnteriorInput: undefined,
+};
 
 const templateObjectValues: ObjectValues = {
   objectParameter: undefined,
   objectViewComponentes: undefined,
-  ValueInputAtual: undefined
+  ValueInputAtual: undefined,
 };
 
 const templateTipoFormatacao: TiposFormatacao = {
@@ -108,8 +108,8 @@ const templateIdCampos = {
   certificacoes: "textAreaCertificacoes",
   numero: "inputTelefone",
   email: "inputEmail",
-  linkdin: "inputLinkdin"
-}
+  linkdin: "inputLinkdin",
+};
 
 export type {
   ObjectParameter,
@@ -124,5 +124,5 @@ export {
   templateObjectValues,
   templateValueInputAtual,
   templateTipoFormatacao,
-  templateIdCampos
+  templateIdCampos,
 };
