@@ -10,6 +10,19 @@ export class PdfController {
     private readonly makeCrateCurriculum: ICurriculumFactory,
   ) {}
 
+  //TODO: Corrigir na próxima versão do front
+  //Ajuste para a versão atual do front
+  private tratarBody(body: any) {
+    let bodyTratado;
+
+    if (body?.tipo && body?.template) return body;
+
+    return {
+      tipo: "padrao",
+      template: body,
+    };
+  }
+
   async handle(request: Request, respose: Response) {
     let dadosResponse: Curriculum = {
       arquivo: "",
@@ -30,7 +43,10 @@ export class PdfController {
 
       const { criarTemplateUseCase } = this.makeCreateTemplates;
 
-      const templateHtml = await criarTemplateUseCase.execute(body);
+      //TODO: Corrigir na próxima versão do front
+      const templateHtml = await criarTemplateUseCase.execute(
+        this.tratarBody(body),
+      );
 
       if (templateHtml) {
         const { criarCurriculumUseCase } = this.makeCrateCurriculum;

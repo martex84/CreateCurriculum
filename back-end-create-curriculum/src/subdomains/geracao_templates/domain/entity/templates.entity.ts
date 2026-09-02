@@ -1,4 +1,5 @@
 export interface TemplatePadrao {
+  foto: string;
   contato: {
     numero: string;
     email: string;
