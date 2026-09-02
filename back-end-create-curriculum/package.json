@@ -5,14 +5,13 @@
   "main": "src/index.ts",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test-unit": "jest tests/unit",
-    "test-spec": "jest tests/integration",
-    "test-atual": "jest src/tests/unit/subdomains/criacao_curriculo/useCase/criarCurriculum.test.ts --watch",
-    "test:cov": "jest --coverage",
-    "build": "tsx src/index.ts",
+    "dev": "cross-env NODE_ENV=DEV tsx watch src/index.ts",
+    "test": "cross-env NODE_ENV=TEST NODE_OPTIONS=--experimental-vm-modules jest",
+    "test:watch": "npm test -- --watch",
+    "test:unit": "npm test -- src/tests/unit",
+    "test:spec": "npm test -- src/tests/integration",
+    "test:cov": "npm test -- --coverage",
+    "build": "cross-env NODE_ENV=producao tsx src/index.ts",
     "audit": "auditjs ossi"
   },
   "repository": {
@@ -29,7 +28,9 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/jest": "^30.0.0",
-    "@types/node": "^25.4.0",
+    "@types/node": "^25.9.5",
+    "auditjs": "^5.0.1",
+    "cross-env": "^10.1.0",
     "jest": "^30.3.0",
     "ts-jest": "^29.4.6",
     "ts-node-dev": "^2.0.0",
@@ -37,9 +38,10 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "auditjs": "^4.0.45",
     "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
     "express": "^4.19.2",
-    "puppeteer": "^22.10.0"
+    "helmet": "^8.2.0",
+    "puppeteer": "^25.8.0"
   }
 }

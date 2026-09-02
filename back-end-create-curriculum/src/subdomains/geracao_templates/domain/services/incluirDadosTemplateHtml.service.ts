@@ -4,13 +4,13 @@ import {
 } from "@geracao_templates/domain/entity/templates.entity";
 import { TiposTemplates } from "@geracao_templates/types/tiposTemplates";
 import { DadosTemplate } from "@geracao_templates/types/dadosTemplate";
-import { ITemplatesServicePort } from "@geracao_templates/ports/iTemplatesServicePort";
+import { IGeracaoTemplatesServicePort } from "@/subdomains/geracao_templates/ports/iGeracaoTemplatesServicePort";
 import { GenerationError } from "@/shared/errors/generation-error";
 import { errors as errosGerais } from "@geracao_templates/domain/services/services.errors";
 import { erros } from "./incluirDadosTemplateHtml.error";
 
 /**@inheritdoc */
-export const incluirDadosTemplateHtmlService: ITemplatesServicePort["incluirDadosTemplateHtmlService"] =
+export const incluirDadosTemplateHtmlService: IGeracaoTemplatesServicePort["incluirDadosTemplateHtmlService"] =
   (
     dadosUsuario: Templates,
     tipoTemplate: TiposTemplates,

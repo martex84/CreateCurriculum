@@ -1,10 +1,11 @@
 import { incluirDadosTemplateHtmlService } from "@geracao_templates/domain/services/incluirDadosTemplateHtml.service";
-import { CaptarDocumentosAdapter } from "@geracao_templates/adapters/captarDocumentos.adapter";
+import { CaptarDocumentosAdapter } from "@/subdomains/geracao_templates/adapters/out/captarDocumentos.adapter";
 import { validarTemplateService } from "@geracao_templates/domain/services/validarTemplate.service";
 import { CriarTemplateUseCase } from "@geracao_templates/useCases/criarTemplate.useCase";
 import { mockDadosTemplate } from "@/tests/mocks/subdomains/geracao_templates/domain/entity/template.mock";
-import { getTemplatePath } from "@geracao_templates/adapters/config/templatesPath";
-import { CriacaoLogs } from "@/config/log";
+import { getTemplatePath } from "@geracao_templates/adapters/out/config/templatesPath";
+import { GestaoArquivosLog } from "@/subdomains/geracao_log/adapters/out/GestaoArquivosLog";
+import { GeracaoLogUseCase } from "@/subdomains/geracao_log/useCase/geracaoLogUseCase";
 
 describe("CriarTemplateUseCase", () => {
   let criarTemplateUseCase: CriarTemplateUseCase;
@@ -14,7 +15,9 @@ describe("CriarTemplateUseCase", () => {
       getTemplatePath(),
     );
 
-    const criacaoLogs = new CriacaoLogs();
+    const gestaoArquivosLog = new GestaoArquivosLog();
+
+    const geracaoLogUseCase = new GeracaoLogUseCase(gestaoArquivosLog);
 
     //Instância do Use Case
     criarTemplateUseCase = new CriarTemplateUseCase(
@@ -23,7 +26,7 @@ describe("CriarTemplateUseCase", () => {
         incluirDadosTemplateHtmlService,
       },
       captarDadosTemplateHtmlAdapter,
-      criacaoLogs,
+      geracaoLogUseCase,
     );
   });
 

@@ -4,26 +4,29 @@ import { ValidationError } from "@/shared/errors/validation-error";
 import { validarTemplateService } from "@geracao_templates/domain/services/validarTemplate.service";
 import * as validarTemplateServiceFunction from "@geracao_templates/domain/services/validarTemplate.service";
 import { incluirDadosTemplateHtmlService } from "@geracao_templates/domain/services/incluirDadosTemplateHtml.service";
-import { CaptarDocumentosAdapter } from "@geracao_templates/adapters/captarDocumentos.adapter";
-import { ITemplatesServicePort } from "@geracao_templates/ports/iTemplatesServicePort";
+import { CaptarDocumentosAdapter } from "@/subdomains/geracao_templates/adapters/out/captarDocumentos.adapter";
+import { IGeracaoTemplatesServicePort } from "@/subdomains/geracao_templates/ports/iGeracaoTemplatesServicePort";
 import { GenerationError } from "@/shared/errors/generation-error";
 import { mensagemError } from "@geracao_templates/useCases/criarTemplate.error";
 import { mockDadosTemplate } from "@/tests/mocks/subdomains/geracao_templates/domain/entity/template.mock";
-import { getTemplatePath } from "@geracao_templates/adapters/config/templatesPath";
-import { CriacaoLogs } from "@/config/log";
+import { getTemplatePath } from "@geracao_templates/adapters/out/config/templatesPath";
+import { GeracaoLogUseCase } from "@/subdomains/geracao_log/useCase/geracaoLogUseCase";
+import { GestaoArquivosLog } from "@/subdomains/geracao_log/adapters/out/GestaoArquivosLog";
 
 describe("CriarTemplateUseCase", () => {
-  let iTemplatesServicePort: ITemplatesServicePort;
+  let iTemplatesServicePort: IGeracaoTemplatesServicePort;
   let criarTemplateUseCase: CriarTemplateUseCase;
   let captarDocumentosAdapter: CaptarDocumentosAdapter;
 
   beforeEach(() => {
     captarDocumentosAdapter = new CaptarDocumentosAdapter(getTemplatePath());
-    const criacaoLogs = new CriacaoLogs();
+    const gestaoArquivosLog = new GestaoArquivosLog();
+
+    const geracaoLogUseCase = new GeracaoLogUseCase(gestaoArquivosLog);
 
     jest.spyOn(captarDocumentosAdapter, "captarHtmlCSS");
 
-    const spyLog = jest.spyOn(criacaoLogs, "execution");
+    const spyLog = jest.spyOn(geracaoLogUseCase, "execution");
 
     spyLog.mockImplementation((message: string | object) => {
       return Promise.resolve();
@@ -41,7 +44,7 @@ describe("CriarTemplateUseCase", () => {
     criarTemplateUseCase = new CriarTemplateUseCase(
       iTemplatesServicePort,
       captarDocumentosAdapter,
-      criacaoLogs,
+      geracaoLogUseCase,
     );
   });
 

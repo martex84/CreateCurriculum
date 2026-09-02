@@ -1,7 +1,7 @@
 import { Router, Request, Response } from "express";
 import { PdfController } from "@controllers/pdfController";
-import { makeCreateTemplates } from "@/main/factories/makeCreateTemplates";
-import { makeCreateCurriculum } from "@/main/factories/makeCreateCurriculum";
+import { makeCreateTemplates } from "@/subdomains/geracao_templates/adapters/factories/makeCreateTemplates";
+import { makeCreateCurriculum } from "@/subdomains/criacao_curriculo/adapters/factories/makeCreateCurriculum";
 
 const router = Router();
 

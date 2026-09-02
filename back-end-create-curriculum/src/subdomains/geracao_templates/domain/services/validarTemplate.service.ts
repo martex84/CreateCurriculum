@@ -7,11 +7,12 @@ import {
   TiposTemplates,
   valoresTiposTemplates,
 } from "@geracao_templates/types/tiposTemplates";
-import { ITemplatesServicePort } from "@geracao_templates/ports/iTemplatesServicePort";
+import { IGeracaoTemplatesServicePort } from "@/subdomains/geracao_templates/ports/iGeracaoTemplatesServicePort";
 import { ValidationError } from "@/shared/errors/validation-error";
+import { getTemplatePath } from "@/subdomains/geracao_templates/adapters/out/config/templatesPath";
 
 /** @inheritdoc */
-export const validarTemplateService: ITemplatesServicePort["validarTemplateService"] =
+export const validarTemplateService: IGeracaoTemplatesServicePort["validarTemplateService"] =
   (
     dados: any,
   ): dados is {
@@ -24,14 +25,17 @@ export const validarTemplateService: ITemplatesServicePort["validarTemplateServi
         throw new Error(mensageError.DADOS_INVALIDOS);
       }
 
-      const { tipo, template: dadosTemplate } = dados;
+      console.log(dados);
 
+      let { tipo, template: dadosTemplate } = dados;
       if (
         !dadosTemplate ||
         typeof dadosTemplate !== "object" ||
         Array.isArray(dadosTemplate)
       )
         throw new Error(mensageError.TEMPLATE_INVALIDO);
+
+      console.log(dadosTemplate);
 
       if (
         !tipo ||
@@ -45,6 +49,7 @@ export const validarTemplateService: ITemplatesServicePort["validarTemplateServi
       if (tipo === "padrao") {
         //Cria uma template para utilizar na validação
         const template: TemplatePadrao = {
+          foto: "",
           contato: {
             numero: "",
             email: "",

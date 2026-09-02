@@ -13,3 +13,4 @@ coverage/
 
 # arquivos
 *review.ts
+*.env

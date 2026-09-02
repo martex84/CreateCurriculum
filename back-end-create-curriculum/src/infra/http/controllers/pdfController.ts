@@ -1,14 +1,27 @@
 import { Request, Response } from "express";
-import { CriacaoLogs } from "@/config/log";
-import { MakeCreateTemplates } from "@/main/factories/makeCreateTemplates";
-import { MakeCreateCurriculum } from "@/main/factories/makeCreateCurriculum";
+import { IGeracaoTemplatesFactory } from "@/subdomains/geracao_templates/ports/IGeracaoTemplatesFactory";
+import { ICurriculumFactory } from "@/subdomains/criacao_curriculo/ports/ICurriculumFactory";
 import { Curriculum } from "@/subdomains/criacao_curriculo/domain/entity/curriculum.entity";
+import { makeGeracaoLogUseCase } from "@geracao_log/";
 
 export class PdfController {
   constructor(
-    private readonly makeCreateTemplates: MakeCreateTemplates,
-    private readonly makeCrateCurriculum: MakeCreateCurriculum,
+    private readonly makeCreateTemplates: IGeracaoTemplatesFactory,
+    private readonly makeCrateCurriculum: ICurriculumFactory,
   ) {}
+
+  //TODO: Corrigir na próxima versão do front
+  //Ajuste para a versão atual do front
+  private tratarBody(body: any) {
+    let bodyTratado;
+
+    if (body?.tipo && body?.template) return body;
+
+    return {
+      tipo: "padrao",
+      template: body,
+    };
+  }
 
   async handle(request: Request, respose: Response) {
     let dadosResponse: Curriculum = {
@@ -20,9 +33,9 @@ export class PdfController {
     };
 
     try {
-      const log = new CriacaoLogs();
+      const log = makeGeracaoLogUseCase();
 
-      log.execution("Captando dados do body");
+      await log.execution("Captando dados do body");
 
       const body = request.body;
 
@@ -30,7 +43,10 @@ export class PdfController {
 
       const { criarTemplateUseCase } = this.makeCreateTemplates;
 
-      const templateHtml = await criarTemplateUseCase.execute(body);
+      //TODO: Corrigir na próxima versão do front
+      const templateHtml = await criarTemplateUseCase.execute(
+        this.tratarBody(body),
+      );
 
       if (templateHtml) {
         const { criarCurriculumUseCase } = this.makeCrateCurriculum;

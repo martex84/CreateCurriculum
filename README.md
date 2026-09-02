@@ -1,127 +1,109 @@
-# CreateCurriculum
+# 📄 Create Curriculum
 
-CreateCurriculum é uma aplicação focada na geração de **currículos em PDF** a partir de um template estruturado.
+O **Create Curriculum** é uma aplicação completa para geração e exportação dinâmica de currículos em PDF a partir de templates customizáveis e dados estruturados.
 
-A proposta do projeto é permitir que qualquer pessoa consiga **gerar um currículo bem formatado de forma rápida**, sem precisar se preocupar com formatação manual de documentos.
+O ecossistema é dividido em duas aplicações independentes que trabalham em conjunto:
 
-O usuário apenas informa seus dados e a aplicação se responsabiliza por estruturar e gerar o arquivo final em PDF.
-
----
-
-# Objetivo do Projeto
-
-O projeto nasce com a proposta de ser mais do que apenas um gerador de PDF.
-
-A ideia é evoluir para um **produto voltado a pessoas que estão buscando emprego**, oferecendo uma forma simples e rápida de criar currículos bem estruturados.
-
-Entre os objetivos estão:
-
-- Facilitar a criação de currículos profissionais
-- Reduzir o tempo gasto com formatação de documentos
-- Possibilitar a evolução do projeto com novos templates e funcionalidades
+- `back-end-create-curriculum`: Microsserviço Node.js responsável pelas regras de negócio, validações, geração de PDF e suíte de testes.
+- `front-end-createcurriculum`: Aplicação Next.js/React responsável pela interface de usuário, formulários e pré-visualização.
 
 ---
 
-# Versão 2.0 em Desenvolvimento
+## 🎯 Sobre o Projeto
 
-Atualmente o projeto público representa a **base da aplicação**.
-
-Uma **versão 2.0 está em desenvolvimento em um repositório privado**, onde novas funcionalidades e melhorias estruturais estão sendo implementadas antes de serem disponibilizadas publicamente.
-
-Essa nova versão tem como objetivo:
-
-- Evoluir a arquitetura do projeto
-- Melhorar a experiência de uso
-- Permitir a expansão do sistema com novas funcionalidades
-- Transformar a aplicação em um produto mais completo
-
-Conforme as funcionalidades forem finalizadas e estabilizadas, elas serão integradas ao repositório público.
+A aplicação recebe informações enviadas pelo cliente no Frontend, valida os campos e regras do template selecionado, executando em seguida no Backend a conversão e renderização do documento em formato PDF através de um motor de processamento assíncrono.
 
 ---
 
-# Estrutura do Projeto
+## 🚀 Evolução da Arquitetura & O que há de novo na v1.5 (Backend)
 
-O projeto é dividido em duas partes principais.
+Recentemente, o backend do projeto passou por uma refatoração profunda de arquitetura e padrões de código, migrando de um modelo clássico MVC para uma abordagem focada em escalabilidade, manutenibilidade e isolamento de regras de negócio.
 
-## Front-end
+### 🔍 Principais Mudanças Técnicas (v1.5):
 
-O **front-end** é responsável pela interação com o usuário e pela coleta das informações necessárias para a criação do currículo.
-
-Tecnologias utilizadas:
-
-- React
-- Typescript
-
-Funções principais:
-
-- Interface de preenchimento de dados
-- Validação das informações fornecidas pelo usuário
-- Comunicação com o back-end
-- Exibição do PDF gerado
+- **Arquitetura Hexagonal (Ports & Adapters):** Desacoplamento total das regras de negócio (Casos de Uso/Domínio) dos detalhes de infraestrutura e frameworks (Express, Puppeteer, etc.).
+- **Organização Feature-First:** Estruturação de pastas orientada a domínios e funcionalidades, facilitando a navegação, modularização e adição de novos templates no ecossistema.
+- **Garantia de Qualidade & Testes Automatizados:** Implementação de suítes completas de **testes unitários** (validação de regras e componentes de domínio) e **testes de integração** (fluxos da API) utilizando **Jest**.
+- **Observabilidade & Logs:** Sistema nativo de logs para rastreabilidade de eventos, requisições com sucesso e tratamento centralizado de exceções no servidor.
 
 ---
 
-## Back-end
+## 🛠️ Tech Stacks
 
-O **back-end** é responsável por processar as informações enviadas pelo front-end e gerar o arquivo PDF.
+### Backend (`back-end-create-curriculum`)
 
-Tecnologias utilizadas:
+- **Linguagem & Runtime:** TypeScript / Node.js
+- **Framework Web:** Express.js
+- **Motor de Renderização PDF:** Puppeteer
+- **Suíte de Testes:** Jest
+- **Execução & Utils:** tsx, cross-env, auditjs
 
-- Node.js
-- Express
-- Puppeteer
+### Frontend (`front-end-createcurriculum`)
 
-Funções principais:
-
-- Receber os dados enviados pelo front-end
-- Renderizar o template do currículo
-- Gerar o arquivo PDF
-- Retornar o arquivo gerado para o usuário
-
----
-
-# Instalação
-
-Para executar o projeto localmente é necessário possuir o **Node.js** instalado na máquina.
-
-Após clonar o repositório, execute os comandos abaixo na pasta raiz do projeto.
-
-## Instalar dependências
-
-Instala todas as dependências do **front-end** e **back-end**.
-
-```
-npm run install:all
-```
-
-## Executar o projeto completo
-
-Executa **front-end e back-end simultaneamente**.
-
-```
-npm run dev:all
-```
-
-## Executar apenas o front-end
-
-```
-npm run dev:frontend
-```
-
-## Executar apenas o back-end
-
-```
-npm run dev:backend
-```
+- **Framework:** Next.js / React.js
+- **Linguagem:** TypeScript
+- **Estilização:** Tailwind CSS, Sass
+- **Qualidade & Auditoria:** ESLint, auditjs
 
 ---
 
-# Evolução do Projeto
+## 🗺️ Roadmap Futuro (Frontend)
 
-O CreateCurriculum está sendo desenvolvido de forma incremental, com foco em:
+Com a consolidação da infraestrutura e arquitetura do backend, as próximas etapas do projeto serão focadas no retrabalho do **Frontend**:
 
-- melhoria contínua da arquitetura
-- evolução das funcionalidades
-- aprimoramento da experiência do usuário
+- [ ] **Evolução Arquitetural:** Adequação do Frontend para os padrões Hexagonal + Feature-First.
+- [ ] **Sincronia de Contratos de API:** Alinhamento dos DTOs, mappers e esquemas de validação client-side com o backend v1.5.
+- [ ] **Suíte de Testes de Interface:** Inclusão de testes unitários e de componentes (React Testing Library / Jest).
+- [ ] **Refinamento de UI/UX:** Melhorias no design visual, responsividade e experiência na escolha e preenchimento dos templates de currículo.
 
-Novas versões e funcionalidades serão adicionadas conforme o projeto evoluir.
+---
+
+## ⚙️ Como Executar os Projetos
+
+Como o Frontend e o Backend são aplicações independentes, **é necessário instalar as dependências e iniciar cada uma separadamente em terminais distintos.**
+
+### 1️⃣ Configuração e Execução do Backend
+
+```bash
+# Navegue até a pasta do backend
+$ cd back-end-create-curriculum
+
+# Instale as dependências
+$ npm install
+
+# Executar o servidor em modo de desenvolvimento
+$ npm run dev
+
+# Executar o build / produção
+$ npm run build
+
+# Executar todos os testes
+$ npm run test
+
+# Executar apenas testes unitários
+$ npm run test:unit
+
+# Executar apenas testes de integração (spec)
+$ npm run test:spec
+
+# Executar testes em modo watch
+$ npm run test:watch
+
+# Gerar relatório de cobertura de testes
+$ npm run test:cov
+```
+
+### 2️⃣ Configuração e Execução do Frontend
+
+Em outro terminal:
+
+```bash
+# Navegue até a pasta do frontend
+$ cd front-end-createcurriculum
+
+# Instale as dependências
+$ npm install
+
+# Executar a aplicação em modo de desenvolvimento
+$ npm run dev
+```
